@@ -1,2 +1,2 @@
-exports.publicPath = './dist';
-exports.sourcePath = './src';
+exports.publicPath = 'dist';
+exports.sourcePath = 'src';

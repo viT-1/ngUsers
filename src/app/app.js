@@ -1,6 +1,6 @@
 // IIFE begins
 (() => {
-    const text = 'Checkpack is ok!';
+    const text = 'Hello World!';
     console.log(text);
 })();
 // IIFE ends
