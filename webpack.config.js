@@ -49,11 +49,19 @@ const webpackConfig = {
         }, {
             test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
             use: [fileLoader],
+        }, {
+            test: /\.html$/,
+            use: ['html-loader'],
         }],
     },
     entry: {
-        ...getEntries(sourcePath, '**/*.js'),
-        ...getEntries(sourcePath, '**/*.css'),
+        // entry mask samples
+        // ...getEntries(sourcePath, '**/*.js'),
+        // ...getEntries(sourcePath, '**/*.css'),
+
+        ...getEntries(sourcePath, 'index.js'),
+        ...getEntries(sourcePath, 'index.css'),
+        ...getEntries(sourcePath, '**/test.*.js'),
     },
     output: {
         path: path.resolve(publicPath),
@@ -71,7 +79,7 @@ const webpackConfig = {
             template: path.resolve(sourcePath, 'index.html'),
             filename: path.resolve(publicPath, 'index.htm'),
             hash: true,
-            chunks: ['app/app.js'],
+            chunks: ['index.js'],
         }),
         new HtmlWebpackIncludeAssetsPlugin({
             assets: ['index.css'],

@@ -1,4 +1,4 @@
-body{
-    background: lightblue; /* comment */
+#app{
+    padding: 2em; /* some comment */
     background-image: url('app__background--light.png');
 }
