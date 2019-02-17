@@ -61,7 +61,7 @@ const webpackConfig = {
 
         ...getEntries(sourcePath, 'index.js'),
         ...getEntries(sourcePath, 'index.css'),
-        ...getEntries(sourcePath, '**/test.*.js'),
+        ...getEntries(sourcePath, '**/*.test.js'),
     },
     output: {
         path: path.resolve(publicPath),
