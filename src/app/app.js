@@ -1,15 +1,11 @@
 import angular from 'angular';
-import config from './app.config';
+import { config, defaults } from './app.config';
 import VpGreeting from '@/vp-greeting';
 
 class App {
     constructor(params) {
         // Сначала указываем значения по умолчанию, затем params переопределяют данные значения
-        const pa = {
-            selector: 'body',
-            name: config.name,
-            ...params,
-        };
+        const pa = { ...defaults, ...params };
 
         // Главный модуль ни от чего не зависит! Все компоненты отдельны.
         this.module = angular.module(pa.name, []);
@@ -26,10 +22,10 @@ class App {
         }
 
         // Инициализирование корневого модуля. Все модули должны быть прежде проинициализированы.
-        angular.element(document).ready(onDomLoaded);
+        // angular.element(document).ready(onDomLoaded);
 
         // IE>8
-        // document.addEventListener('DOMContentLoaded', onDomLoaded);
+        document.addEventListener('DOMContentLoaded', onDomLoaded);
 
         this.constructorParams = pa;
     }

@@ -4,10 +4,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // не забываем править эти свойства и в package.json scripts
-const { publicPath, sourcePath } = require('./app.config');
+const { publicPath, sourcePath } = require('./config');
 
 const fileLoader = {
     loader: 'file-loader',
@@ -61,7 +61,6 @@ const webpackConfig = {
 
         ...getEntries(sourcePath, 'index.js'),
         ...getEntries(sourcePath, 'index.css'),
-        ...getEntries(sourcePath, '**/*.test.js'),
     },
     output: {
         path: path.resolve(publicPath),
@@ -90,7 +89,7 @@ const webpackConfig = {
     ],
     optimization: {
         minimize: true,
-        minimizer: [new UglifyJsPlugin()],
+        minimizer: [new TerserPlugin()],
     },
 };
 

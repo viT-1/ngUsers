@@ -1,8 +1,11 @@
 import template from './vp-greeting.html';
 import controller from './vp-greeting__controller';
 
-const config = {
+export const defaults = {
     name: 'vpGreeting',
+};
+
+export const config = {
     template,
     bindings: {
         to: '@',
@@ -11,5 +14,3 @@ const config = {
     controller,
     controllerAs: 'vm',
 };
-
-export default config;

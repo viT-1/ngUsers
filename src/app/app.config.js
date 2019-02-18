@@ -1,10 +1,10 @@
-const appName = 'myApp';
+export const defaults = {
+    name: 'myApp',
+    selector: 'body',
+};
 
-const config = {
-    name: appName,
+export const config = {
     modules: {
         names: [],
     },
 };
-
-export default config;
