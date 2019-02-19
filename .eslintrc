@@ -1,9 +1,16 @@
 {
     "env": {
-        "browser": true
+        "browser": true,
+        "es6": true
     },
     "rules": {
         "indent": ["error", 4],
         "no-new": 0
-    }
+    },
+    "overrides": [{
+        "files": ["**/*.test.js"],
+        "env": {
+            "jest": true
+        }
+    }]
 }

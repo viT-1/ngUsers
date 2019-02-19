@@ -1,7 +1,9 @@
-class vpGreetingCtrl {
+class VpGreetingController {
+    /* @ngInject */
     $onInit() {
+        this.greet = 'Hello';
         this.TO = this.to.toUpperCase();
     }
 }
 
-export default vpGreetingCtrl;
+export default VpGreetingController;

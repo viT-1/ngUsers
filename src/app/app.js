@@ -1,6 +1,5 @@
 import angular from 'angular';
-import { config, defaults } from './app.config';
-import VpGreeting from '@/vp-greeting';
+import { name, defaults, requirements } from './app.config';
 
 class App {
     constructor(params) {
@@ -8,16 +7,15 @@ class App {
         const pa = { ...defaults, ...params };
 
         // Главный модуль ни от чего не зависит! Все компоненты отдельны.
-        this.module = angular.module(pa.name, []);
+        this.module = angular.module(name, requirements);
 
         // Инициализация всех модулей
-        // @todo: angular.module() кучи их
-        VpGreeting.init({ appModule: this.module });
+        // @todo: angular.module() кучи их - это происходит в import requirement
 
         function onDomLoaded() {
             angular.bootstrap(
                 document.querySelector(pa.selector),
-                config.modules.names.concat(pa.name),
+                [name],
             );
         }
 

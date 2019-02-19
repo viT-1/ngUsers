@@ -1,9 +1,9 @@
 import template from './vp-greeting.html';
-import controller from './vp-greeting__controller';
 
-export const defaults = {
-    name: 'vpGreeting',
-};
+// @todo: в зависимости добавить uiRouter
+export const requirements = [];
+
+export const name = 'vpGreeting';
 
 export const config = {
     template,
@@ -11,6 +11,5 @@ export const config = {
         to: '@',
     },
     scope: {},
-    controller,
     controllerAs: 'vm',
 };

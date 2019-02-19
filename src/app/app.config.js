@@ -1,10 +1,12 @@
+// import components from './app__components';
+import vpGreeting from '@/vp-greeting';
+
+export const name = 'vpApp';
+
 export const defaults = {
-    name: 'myApp',
     selector: 'body',
 };
 
-export const config = {
-    modules: {
-        names: [],
-    },
-};
+export const requirements = [
+    vpGreeting,
+];

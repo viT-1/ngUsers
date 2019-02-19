@@ -3,6 +3,9 @@ const { sourcePath } = require('./config');
 const jestConfig = {
     // Мэппинг по структуре проекта - какие тесты запускать из под jest
     testRegex: `./${sourcePath}/(.*?)/(.*?)\\.(test|spec)\\.js$`,
+    testPathIgnorePatterns: [
+        'vp-greeting',
+    ],
 
     // browser: true,
 
@@ -19,6 +22,7 @@ const jestConfig = {
     collectCoverageFrom: [
         `${sourcePath}/**/*.js`,
         `!${sourcePath}/**/*.config.js`,
+        `!${sourcePath}/**/*.test.js`,
         // Корневой index.js всего лишь инициализация компонент для браузера - не реиспользуется
         '!**/index.js',
     ],
