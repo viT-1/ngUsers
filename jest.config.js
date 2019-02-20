@@ -3,11 +3,9 @@ const { sourcePath } = require('./config');
 const jestConfig = {
     // Мэппинг по структуре проекта - какие тесты запускать из под jest
     testRegex: `./${sourcePath}/(.*?)/(.*?)\\.(test|spec)\\.js$`,
-    testPathIgnorePatterns: [
-        'vp-greeting',
-    ],
 
-    // browser: true,
+    // Что исключить из вышеуказанной маски?
+    testPathIgnorePatterns: [],
 
     // Каталоги создаваемые node-модулем должны храниться в node_modules,
     // а не засорять корневой каталог
