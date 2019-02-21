@@ -3,7 +3,10 @@
     "version": "0.0.1",
     "description": "Test project on latest AngularJS with ES6 classes",
     "keywords": [
-        "ES6"
+        "ES6",
+        "AngularJS",
+        "unit-testing",
+        "jest"
     ],
     "repository": {
         "type": "git",
