@@ -59,8 +59,10 @@ const webpackConfig = {
         // ...getEntries(sourcePath, '**/*.js'),
         // ...getEntries(sourcePath, '**/*.css'),
 
-        ...getEntries(sourcePath, 'index.js'),
-        ...getEntries(sourcePath, 'index.css'),
+        'index.js': path.resolve(sourcePath, 'index.js'),
+        'index.css': path.resolve(sourcePath, 'index.css'),
+        // Пока не перейдём на сервер, запустить ngMockE2E не получится
+        // 'nobackend.js': path.resolve(sourcePath, 'nobackend.js'),
     },
     output: {
         path: path.resolve(publicPath),
@@ -78,7 +80,12 @@ const webpackConfig = {
             template: path.resolve(sourcePath, 'index.html'),
             filename: path.resolve(publicPath, 'index.htm'),
             hash: true,
-            chunks: ['index.js'],
+            chunks: [
+                'vendors.js',
+                // Этот chunk только для develop mode!
+                // 'nobackend.js',
+                'index.js',
+            ],
         }),
         new HtmlWebpackIncludeAssetsPlugin({
             assets: ['index.css'],
@@ -90,6 +97,11 @@ const webpackConfig = {
     optimization: {
         minimize: true,
         minimizer: [new TerserPlugin()],
+        splitChunks: {
+            cacheGroups: {
+                commons: { test: /[\\/]node_modules[\\/]/, name: 'vendors.js', chunks: 'all' },
+            },
+        },
     },
 };
 

@@ -1,5 +1,5 @@
 import angular from 'angular';
-import { name, defaults, requirements } from './app.config';
+import { defaults } from './app.config';
 
 class App {
     constructor(params) {
@@ -7,7 +7,7 @@ class App {
         const pa = { ...defaults, ...params };
 
         // Главный модуль ни от чего не зависит! Все компоненты отдельны.
-        this.module = angular.module(name, requirements);
+        this.module = angular.module(pa.name, pa.requirements);
 
         // Инициализация всех модулей
         // @todo: angular.module() кучи их - это происходит в import requirement
@@ -15,7 +15,7 @@ class App {
         function onDomLoaded() {
             angular.bootstrap(
                 document.querySelector(pa.selector),
-                [name],
+                [pa.name],
             );
         }
 

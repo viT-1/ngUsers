@@ -1,7 +1,7 @@
-import { name, defaults } from './app.config';
+import { aka, defaults } from './app.config';
 import App from './app';
 
-describe(name, () => {
+describe(aka, () => {
     test('Если в конструктор не переданы параметры, они берутся из конфига', () => {
         const app = new App();
 

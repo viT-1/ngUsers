@@ -1,15 +1,12 @@
-import angular from 'angular';
-
-import { name as appName } from '@/app/app.config';
-import { name, requirements, config } from './vp-greeting.config';
-import VpGreetingController from './vp-greeting__controller';
+import { aka, config } from './vp-greeting.config';
+import vpGreetingModule from './vp-greeting.module';
+import VpGreetingController from './vp-greeting.controller';
+import VpGreetingService from './vp-greeting.service';
 
 const component = { ...config, controller: VpGreetingController };
 
-// Экспортируем имя, но как только импортируем этот модуль, сразу же его инициализируем
-const vpGreetingModule = angular
-    .module(`${appName}.${name}`, requirements)
-    .component(name, component)
+export default vpGreetingModule
+    .service(VpGreetingService.aka, VpGreetingService)
+    // @todo: в зависимости добавить uiRouter - в качестве ещё одного сервиса
+    .component(aka, component)
     .name;
-
-export default vpGreetingModule;

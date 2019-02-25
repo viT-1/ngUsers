@@ -12,5 +12,10 @@
         "env": {
             "jest": true
         }
+    }, {
+        "files": ["**/*.base.js"],
+        "rules": {
+            "class-methods-use-this": 0
+        }
     }]
 }

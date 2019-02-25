@@ -1,9 +1,6 @@
 import template from './vp-greeting.html';
 
-// @todo: в зависимости добавить uiRouter
-export const requirements = [];
-
-export const name = 'vpGreeting';
+export const aka = 'vpGreeting';
 
 export const config = {
     template,
