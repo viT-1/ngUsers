@@ -1,15 +1,13 @@
 import angular from 'angular';
 
 // Откуда проблема с проходящим запросом, когда его вроде-бы перехватил mockHttp
+// Решена обратной зависимостью - данный модуль поставлен дочерним к App
 // @link: Problem https://groups.google.com/forum/#!topic/angular/iNkSs6yv3mE
 // @link: http://angular-tips.com/blog/2015/01/a-backend-less-plunker/
 
 import ngMockE2E from 'angular-mocks/ngMockE2E';
 
 import { fakeHttpTimeout } from '~/config';
-// Чтобы перехватывать http-запросы из основного приложения
-// надо знать что добавлять в Dependency Injection, иначе реакции не будет
-import { aka as angularMainAppDefaultName } from '@/app/app.config';
 
 // @url asimmittal.blogspot.com/2015/06/faking-backend-in-angularjs.html
 // Решение проблемы сделать паузу в ответе $httpBackend.whenGET
@@ -18,7 +16,7 @@ import { aka as angularMainAppDefaultName } from '@/app/app.config';
 function decorateWithTimeout($delegate) {
     function proxy(method, url, data, callback, headers) {
         let timer = 0;
-        if (url.match(/^\/api\/greeting/)) {
+        if (url.match(/^\/api\//)) {
             timer = fakeHttpTimeout;
         }
 
@@ -53,9 +51,7 @@ const testModuleName = angular.module('testModule', [])
 
 const mockHttpModule = angular.module('mockHttpModule', [
     // Для какого angular-модуля вешаем fake-обработчики на $http-запросы - элементарное приложение
-    testModuleName,
-    // Для какого angular-модуля вешаем fake-обработчики на $http-запросы - основное приложение
-    angularMainAppDefaultName,
+    // testModuleName,
     // Внедрение провайдера $httpBackend
     ngMockE2E,
 ]).config(($provide) => {
