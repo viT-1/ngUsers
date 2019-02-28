@@ -6,7 +6,8 @@
         "ES6",
         "AngularJS",
         "unit-testing",
-        "jest"
+        "jest",
+        "ngMockE2E"
     ],
     "repository": {
         "type": "git",

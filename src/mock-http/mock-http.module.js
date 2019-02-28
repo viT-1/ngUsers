@@ -1,9 +1,68 @@
 import angular from 'angular';
+
+// Откуда проблема с проходящим запросом, когда его вроде-бы перехватил mockHttp
+// @link: Problem https://groups.google.com/forum/#!topic/angular/iNkSs6yv3mE
+// @link: http://angular-tips.com/blog/2015/01/a-backend-less-plunker/
+
 import ngMockE2E from 'angular-mocks/ngMockE2E';
 
-const mockHttpModule = angular.module('mockHttpModule', [ngMockE2E])
-    .config(['$provide', ($provide) => {
-        $provide.decorator('$httpBackend', angular.mock.e2e.$httpBackendDecorator);
-    }]);
+import { fakeHttpTimeout } from '~/config';
+// Чтобы перехватывать http-запросы из основного приложения
+// надо знать что добавлять в Dependency Injection, иначе реакции не будет
+import { aka as angularMainAppDefaultName } from '@/app/app.config';
+
+// @url asimmittal.blogspot.com/2015/06/faking-backend-in-angularjs.html
+// Решение проблемы сделать паузу в ответе $httpBackend.whenGET
+// @link https://stackoverflow.com/questions/26083822/angularjs-using-ngmocke2e-httpbackend-how-can-i-delay-a-specific-response
+/* @ngInject */
+function decorateWithTimeout($delegate) {
+    function proxy(method, url, data, callback, headers) {
+        let timer = 0;
+        if (url.match(/^\/api\/greeting/)) {
+            timer = fakeHttpTimeout;
+        }
+
+        function interceptorDelayed(...args) {
+            const self = this;
+
+            setTimeout(() => {
+                callback.apply(self, args);
+            }, timer);
+        }
+
+        return $delegate.call(this, method, url, data, interceptorDelayed, headers);
+    }
+
+    Object.keys($delegate).forEach((key) => { proxy[key] = $delegate[key]; });
+
+    return proxy;
+}
+
+/* @ngInject */
+function testHttpRun($http) {
+    $http.get('/api/test')
+        .then((resp) => {
+            console.log('Ответ then по /api/test:', resp);
+        });
+}
+
+// Модуль, чтобы протестировать заглушку, не подключая основной App
+const testModuleName = angular.module('testModule', [])
+    .run(testHttpRun)
+    .name;
+
+const mockHttpModule = angular.module('mockHttpModule', [
+    // Для какого angular-модуля вешаем fake-обработчики на $http-запросы - элементарное приложение
+    testModuleName,
+    // Для какого angular-модуля вешаем fake-обработчики на $http-запросы - основное приложение
+    angularMainAppDefaultName,
+    // Внедрение провайдера $httpBackend
+    ngMockE2E,
+]).config(($provide) => {
+    'ngInject';
+
+    $provide.decorator('$httpBackend',
+        fakeHttpTimeout > 0 ? decorateWithTimeout : angular.mock.e2e.$httpBackendDecorator);
+});
 
 export default mockHttpModule;
