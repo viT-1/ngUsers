@@ -2,21 +2,25 @@ import angular from 'angular';
 import 'angular-mocks';
 
 import Common from '@/common';
+import mockHttpModuleName from '@/mock-http';
 import VpGreetingService from './vp-greeting.service';
 
 // функция заменяющая таймауты на фэйковые - не требуется ждать
-jest.useFakeTimers();
+// jest.useFakeTimers();
 
 describe(VpGreetingService.aka, () => {
     let svc;
-    let $rootScope;
+    let $timeout;
+
+    beforeEach(() => {
+        angular.mock.module(mockHttpModuleName);
+    });
 
     beforeEach(angular.mock.inject(($injector) => {
         const $http = $injector.get('$http');
-        const $q = $injector.get('$q');
-        $rootScope = $injector.get('$rootScope');
+        $timeout = $injector.get('$timeout');
 
-        svc = new VpGreetingService($http, $q);
+        svc = new VpGreetingService($http);
     }));
 
     test('Сервис по getGreetString выдаёт обещание', () => {
@@ -33,24 +37,6 @@ describe(VpGreetingService.aka, () => {
                 done();
             });
 
-        // Фэйковые таймауты выполнить
-        jest.runAllTimers();
-
-        // Заставляем $q ожить
-        $rootScope.$apply();
-    });
-
-    test('Если источник прислал ошибку, то data.greet отсутствует', (done) => {
-        expect.assertions(2);
-
-        svc.getGreetString('падаем! 8P')
-            .catch((resp) => {
-                expect(resp.data).toBeDefined();
-                expect(resp.data.greet).not.toBeDefined();
-                done();
-            });
-
-        // Заставляем $q ожить
-        $rootScope.$apply();
+        $timeout.flush();
     });
 });
