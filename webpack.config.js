@@ -61,8 +61,6 @@ const webpackConfig = {
 
         'index.js': path.resolve(sourcePath, 'index.js'),
         'index.css': path.resolve(sourcePath, 'index.css'),
-        // Пока не перейдём на сервер, запустить ngMockE2E не получится
-        'nobackend.js': path.resolve(sourcePath, 'nobackend.js'),
     },
     output: {
         path: path.resolve(publicPath),
@@ -81,10 +79,7 @@ const webpackConfig = {
             filename: path.resolve(publicPath, 'index.htm'),
             hash: true,
             chunks: [
-                'shared.js',
                 'vendors.js',
-                // Этот chunk только для develop mode!
-                'nobackend.js',
                 'index.js',
             ],
         }),
@@ -98,7 +93,6 @@ const webpackConfig = {
     optimization: {
         minimize: true,
         minimizer: [new TerserPlugin()],
-        runtimeChunk: { name: 'shared.js' },
         splitChunks: {
             cacheGroups: {
                 commons: {
