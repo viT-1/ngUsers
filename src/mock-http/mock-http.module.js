@@ -36,29 +36,12 @@ function decorateWithTimeout($delegate) {
     return proxy;
 }
 
-/* @ngInject */
-function testHttpRun($http) {
-    $http.get('/api/test')
-        .then((resp) => {
-            console.log('Ответ then по /api/test:', resp);
-        });
-}
+const mockHttpModule = angular.module('mockHttpModule', [ngMockE2E])
+    .config(($provide) => {
+        'ngInject';
 
-// Модуль, чтобы протестировать заглушку, не подключая основной App
-const testModuleName = angular.module('testModule', [])
-    .run(testHttpRun)
-    .name;
-
-const mockHttpModule = angular.module('mockHttpModule', [
-    // Для какого angular-модуля вешаем fake-обработчики на $http-запросы - элементарное приложение
-    // testModuleName,
-    // Внедрение провайдера $httpBackend
-    ngMockE2E,
-]).config(($provide) => {
-    'ngInject';
-
-    $provide.decorator('$httpBackend',
-        fakeHttpTimeout > 0 ? decorateWithTimeout : angular.mock.e2e.$httpBackendDecorator);
-});
+        $provide.decorator('$httpBackend',
+            fakeHttpTimeout > 0 ? decorateWithTimeout : angular.mock.e2e.$httpBackendDecorator);
+    });
 
 export default mockHttpModule;

@@ -8,7 +8,6 @@ class VpGreetingController {
         this.service.getGreetString()
             .then((resp) => {
                 this.greet = resp.data.greet;
-                console.log('Ответ then по service.getGreetString => /api/greeting:', resp);
             })
             .catch(() => {});
 
