@@ -1,6 +1,6 @@
 import { errors as commonErrors } from '@/common/common.config';
 
-class VpGreetingServiceBase {
+class VpGreetingSrvcBase {
     /* @ngInject */
     constructor($http, $q) {
         this.$http = $http;
@@ -8,7 +8,7 @@ class VpGreetingServiceBase {
         // Используем $q, а не ES6 Promise, чтобы не городить огород с ручным обновлением view
         this.$q = $q;
 
-        if (new.target === VpGreetingServiceBase) {
+        if (new.target === VpGreetingSrvcBase) {
             throw new TypeError(commonErrors.ABSTRACT_CANT_BE_INSTANTIATED);
         }
     }
@@ -18,8 +18,8 @@ class VpGreetingServiceBase {
     }
 
     static get aka() {
-        return 'VpGreetingService';
+        return 'VpGreetingSrvc';
     }
 }
 
-export default VpGreetingServiceBase;
+export default VpGreetingSrvcBase;

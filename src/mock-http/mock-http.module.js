@@ -51,16 +51,23 @@ class MockHttp {
         // Для single-page роутинга Route-provider
         $httpBackend.whenGET(/\.html/).passThrough();
     }
+
+    static get module() {
+        try {
+            return angular.module(this.name);
+        } catch (err) {
+            return angular.module(this.name, [ngMockE2E])
+                .run(MockHttp.run)
+                .config(($provide) => {
+                    'ngInject';
+
+                    $provide.decorator('$httpBackend',
+                        fakeHttpTimeout > 0
+                            ? MockHttp.httpBackendDecorator
+                            : angular.mock.e2e.$httpBackendDecorator);
+                });
+        }
+    }
 }
 
-const mockHttpModule = angular.module('mockHttpModule', [ngMockE2E])
-    .run(MockHttp.run)
-    .config(($provide) => {
-        'ngInject';
-
-        $provide.decorator('$httpBackend',
-            fakeHttpTimeout > 0
-                ? MockHttp.httpBackendDecorator : angular.mock.e2e.$httpBackendDecorator);
-    });
-
-export default mockHttpModule.name;
+export default MockHttp.module.name;

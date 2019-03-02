@@ -1,9 +1,9 @@
-import VpGreetingServiceBase from './vp-greeting.service.base';
+import VpGreetingSrvcBase from './vp-greeting.service.base';
 
-class VpGreetingService extends VpGreetingServiceBase {
+class VpGreetingSrvc extends VpGreetingSrvcBase {
     getGreetString() {
         return this.$http.get('/api/greeting');
     }
 }
 
-export default VpGreetingService;
+export default VpGreetingSrvc;

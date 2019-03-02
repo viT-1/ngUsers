@@ -1,11 +1,11 @@
 import { errors as commonErrors } from '@/common/common.config';
-import VpGreetingServiceBase from './vp-greeting.service.base';
+import VpGreetingSrvcBase from './vp-greeting.service.base';
 
-class InheritedClassComponent extends VpGreetingServiceBase {}
+class InheritedClassComponent extends VpGreetingSrvcBase {}
 
-describe(`${VpGreetingServiceBase.aka} base class`, () => {
+describe(`${VpGreetingSrvcBase.aka} base class`, () => {
     it('Нельзя создать абстрактный объект VpGreetingServiceBase', () => {
-        expect(() => { new VpGreetingServiceBase(); })
+        expect(() => { new VpGreetingSrvcBase(); })
             .toThrowError(commonErrors.ABSTRACT_CANT_BE_INSTANTIATED);
     });
     test('Наследник обязан реализовать метод getGreetString - без реализации выдаётся ошибка', () => {

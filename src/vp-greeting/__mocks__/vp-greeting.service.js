@@ -1,6 +1,6 @@
-import VpGreetingServiceBase from '../vp-greeting.service.base';
+import VpGreetingSrvcBase from '../vp-greeting.service.base';
 
-class VpGreetingService extends VpGreetingServiceBase {
+class VpGreetingSrvc extends VpGreetingSrvcBase {
     getGreetString(isNeedToFail) {
         const defer = this.$q.defer();
 
@@ -15,4 +15,4 @@ class VpGreetingService extends VpGreetingServiceBase {
     }
 }
 
-export default VpGreetingService;
+export default VpGreetingSrvc;

@@ -1,7 +1,7 @@
 class VpGreeting {
     /* @ngInject */
-    constructor(VpGreetingService) {
-        this.service = VpGreetingService;
+    constructor(VpGreetingSrvc) {
+        this.service = VpGreetingSrvc;
     }
 
     $onInit() {

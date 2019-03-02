@@ -3,12 +3,12 @@ import 'angular-mocks';
 
 import Common from '@/common';
 import mockHttpModuleName from '@/mock-http';
-import VpGreetingService from './vp-greeting.service';
+import VpGreetingSrvc from './vp-greeting.service';
 
 // функция заменяющая таймауты на фэйковые - не требуется ждать
 // jest.useFakeTimers();
 
-describe(VpGreetingService.aka, () => {
+describe(VpGreetingSrvc.aka, () => {
     let svc;
     let $timeout;
 
@@ -20,7 +20,7 @@ describe(VpGreetingService.aka, () => {
         const $http = $injector.get('$http');
         $timeout = $injector.get('$timeout');
 
-        svc = new VpGreetingService($http);
+        svc = new VpGreetingSrvc($http);
     }));
 
     test('Сервис по getGreetString выдаёт обещание', () => {
