@@ -1,3 +1,3 @@
-import vpGreetingModuleName from './vp-greeting';
+import vpGreetingModuleName from './vp-greeting.module';
 
 export default vpGreetingModuleName;

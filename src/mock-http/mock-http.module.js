@@ -8,40 +8,59 @@ import angular from 'angular';
 import ngMockE2E from 'angular-mocks/ngMockE2E';
 
 import { fakeHttpTimeout } from '~/config';
+import { templates } from './mock-http.config';
 
 // @url asimmittal.blogspot.com/2015/06/faking-backend-in-angularjs.html
 // Решение проблемы сделать паузу в ответе $httpBackend.whenGET
 // @link https://stackoverflow.com/questions/26083822/angularjs-using-ngmocke2e-httpbackend-how-can-i-delay-a-specific-response
-/* @ngInject */
-function decorateWithTimeout($delegate) {
-    function proxy(method, url, data, callback, headers) {
-        let timer = 0;
-        if (url.match(/^\/api\//)) {
-            timer = fakeHttpTimeout;
+
+class MockHttp {
+    /* @ngInject */
+    static httpBackendDecorator($delegate) {
+        function proxy(method, url, data, callback, headers) {
+            let timer = 0;
+            if (url.match(/^\/api\//)) {
+                timer = fakeHttpTimeout;
+            }
+
+            function interceptorDelayed(...args) {
+                const self = this;
+
+                setTimeout(() => {
+                    callback.apply(self, args);
+                }, timer);
+            }
+
+            return $delegate.call(this, method, url, data, interceptorDelayed, headers);
         }
 
-        function interceptorDelayed(...args) {
-            const self = this;
+        Object.keys($delegate).forEach((key) => { proxy[key] = $delegate[key]; });
 
-            setTimeout(() => {
-                callback.apply(self, args);
-            }, timer);
-        }
-
-        return $delegate.call(this, method, url, data, interceptorDelayed, headers);
+        return proxy;
     }
 
-    Object.keys($delegate).forEach((key) => { proxy[key] = $delegate[key]; });
+    /* @ngInject */
+    static run($httpBackend) {
+        $httpBackend.whenGET('/api/test').respond(200, { foo: 'bar' });
 
-    return proxy;
+        $httpBackend.whenGET('/api/greeting').respond(200, { greet: 'Complete' });
+
+        $httpBackend.whenGET('/tmpl/vp-greeting').respond(200, templates['vp-greeting']);
+        $httpBackend.whenGET('/tmpl/app').respond(200, templates.app);
+
+        // Для single-page роутинга Route-provider
+        $httpBackend.whenGET(/\.html/).passThrough();
+    }
 }
 
 const mockHttpModule = angular.module('mockHttpModule', [ngMockE2E])
+    .run(MockHttp.run)
     .config(($provide) => {
         'ngInject';
 
         $provide.decorator('$httpBackend',
-            fakeHttpTimeout > 0 ? decorateWithTimeout : angular.mock.e2e.$httpBackendDecorator);
+            fakeHttpTimeout > 0
+                ? MockHttp.httpBackendDecorator : angular.mock.e2e.$httpBackendDecorator);
     });
 
-export default mockHttpModule;
+export default mockHttpModule.name;

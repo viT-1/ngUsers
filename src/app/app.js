@@ -1,5 +1,5 @@
 import angular from 'angular';
-import { defaults } from './app.config';
+import { defaults, config } from './app.config';
 
 class App {
     constructor(params) {
@@ -7,7 +7,8 @@ class App {
         const pa = { ...defaults, ...params };
 
         // Главный модуль ни от чего не зависит! Все компоненты отдельны.
-        this.module = angular.module(pa.name, pa.requirements);
+        this.module = angular.module(pa.name, pa.requirements)
+            .component('app', config);
 
         // Инициализация всех модулей
         // @todo: angular.module() кучи их - это происходит в import requirement

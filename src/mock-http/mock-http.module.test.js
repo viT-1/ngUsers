@@ -2,7 +2,7 @@
 import angular from 'angular';
 import 'angular-mocks';
 
-import mockHttpModuleName from './mock-http';
+import mockHttpModuleName from './mock-http.module';
 
 // Все виды тестирования AngularJS
 // @link: https://www.yearofmoo.com/2013/01/full-spectrum-testing-with-angularjs-and-karma.html

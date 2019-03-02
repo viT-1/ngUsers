@@ -1,4 +1,4 @@
-class VpGreetingController {
+class VpGreeting {
     /* @ngInject */
     constructor(VpGreetingService) {
         this.service = VpGreetingService;
@@ -15,4 +15,4 @@ class VpGreetingController {
     }
 }
 
-export default VpGreetingController;
+export default VpGreeting;

@@ -17,5 +17,10 @@
         "rules": {
             "class-methods-use-this": 0
         }
+    }, {
+        "files": ["**/*.config.js"],
+        "rules": {
+            "prefer-default-export": 0
+        }
     }]
 }

@@ -11,3 +11,9 @@ export const defaults = {
         mockHttpModuleName,
     ],
 };
+
+export const config = {
+    templateUrl: '/tmpl/app',
+    bindings: {},
+    scope: {},
+};

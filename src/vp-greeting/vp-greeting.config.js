@@ -1,12 +1,9 @@
-import template from './vp-greeting.html';
-
 export const aka = 'vpGreeting';
 
 export const config = {
-    template,
+    templateUrl: '/tmpl/vp-greeting',
     bindings: {
         to: '@',
     },
     scope: {},
-    controllerAs: 'vm',
 };
