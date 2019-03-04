@@ -1,5 +1,6 @@
 import vpGreetingModuleName from '@/vp-greeting';
 import mockHttpModuleName from '@/mock-http';
+import uiLinkModuleName from '@/ui-link';
 
 export const aka = 'vpApp';
 
@@ -9,6 +10,7 @@ export const defaults = {
     requirements: [
         vpGreetingModuleName,
         mockHttpModuleName,
+        uiLinkModuleName,
     ],
 };
 

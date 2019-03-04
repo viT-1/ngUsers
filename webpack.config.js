@@ -6,14 +6,27 @@ const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plug
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-// не забываем править эти свойства и в package.json scripts
-const { publicPath, sourcePath } = require('./config');
+// не забываем править свойства publicPath и sourcePath в том числе в package.json scripts
+const {
+    publicPath,
+    sourcePath,
+    theme,
+    cssFilter,
+} = require('./config');
 
 const fileLoader = {
     loader: 'file-loader',
+    // @link: https://github.com/webpack-contrib/file-loader/issues/46#issuecomment-196549110
+    // https://github.com/webpack-contrib/file-loader/issues/32#issuecomment-250622904
     options: {
-        name: '[path][name].[ext]',
-        context: sourcePath,
+        // Каждый css-модуль подключается отдельно
+        publicPath: '../',
+        name: '[folder]/[name].[ext]',
+
+        // вариант для общего (со всеми импортированными файлами) index.css в корне,
+        // а картинки остаются в своих директориях - по модулям
+        // name: '[path][name].[ext]',
+        // context: sourcePath,
     },
 };
 
@@ -27,6 +40,21 @@ function getEntries(srcDir, pattern) {
 
     return entries;
 }
+
+const cssEntries = getEntries(sourcePath, `**/*.${theme}.css`);
+
+const filteredCssEntries = Object.keys(cssEntries)
+    .filter(key => cssFilter.includes(key.split('/')[0]))
+    .reduce((obj, key) => ({ ...obj, [key]: cssEntries[key] }), {});
+
+// console.log(filteredCssEntries);
+
+const allEntries = {
+    // entry mask samples
+    // ...getEntries(sourcePath, '**/*.js'),
+    ...filteredCssEntries,
+    'index.js': path.resolve(sourcePath, 'index.js'),
+};
 
 const webpackConfig = {
     // watch: true,
@@ -54,14 +82,7 @@ const webpackConfig = {
             use: ['html-loader'],
         }],
     },
-    entry: {
-        // entry mask samples
-        // ...getEntries(sourcePath, '**/*.js'),
-        // ...getEntries(sourcePath, '**/*.css'),
-
-        'index.js': path.resolve(sourcePath, 'index.js'),
-        'index.css': path.resolve(sourcePath, 'index.css'),
-    },
+    entry: allEntries,
     output: {
         path: path.resolve(publicPath),
         filename: '[name]',
@@ -84,7 +105,13 @@ const webpackConfig = {
             ],
         }),
         new HtmlWebpackIncludeAssetsPlugin({
-            assets: ['index.css'],
+            // Прямой/дубовый вариант подключения css
+            // assets: ['index.css'],
+            // Вариант, когда подключаются все найденные по маске css-файлы
+            // assets: Object.keys(cssEntries),
+            // Вариант, когда подключаются только те файлы, которые в зависимостях app
+            assets: Object.keys(filteredCssEntries),
+
             hash: true,
             append: false,
         }),
