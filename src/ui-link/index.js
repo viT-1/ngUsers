@@ -1,3 +1,14 @@
-import uiLinkModuleName from './ui-link.module';
+import angular from 'angular';
 
-export default uiLinkModuleName;
+// import uiLinkModuleName from './ui-link.module';
+import UiLinkDirective from './ui-link.directive';
+
+let module;
+try {
+    module = angular.module(UiLinkDirective.aka);
+} catch (err) {
+    module = angular.module(UiLinkDirective.aka, [])
+        .directive(UiLinkDirective.aka, () => new UiLinkDirective());
+}
+
+export default module.name;

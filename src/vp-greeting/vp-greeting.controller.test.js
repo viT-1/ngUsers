@@ -1,7 +1,7 @@
 import angular from 'angular';
 import 'angular-mocks';
 
-import vpGreetingModuleName from './vp-greeting.module';
+import vpGreetingModuleName from './index';
 
 // Пример ручного mock'а - подменяем на сервис реализация которого без $http запроса
 jest.mock('./vp-greeting.service');

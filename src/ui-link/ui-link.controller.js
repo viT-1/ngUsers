@@ -1,12 +1,9 @@
-class UiLink {
-    /* @ngInject */
-    constructor($attrs) {
-        this.attrs = $attrs;
-    }
+import { iamCssInitMods } from './ui-link.config';
 
+class UiLink {
     $onInit() {
-        // this.test = 'Hi!';
-        // console.log('Проверка изолированного scope', this.uiLink, this.attrs.uiLink);
+        // Дополняем данные из binded attributes to controller
+        this.uiLink = { ...iamCssInitMods, ...this.uiLink };
     }
 }
 

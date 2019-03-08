@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import { config, iamCssInitMods } from './ui-link.config';
+import { config, errors } from './ui-link.config';
 import UiLinkCtrl from './ui-link.controller';
 
 class uiLink {
@@ -10,16 +10,13 @@ class uiLink {
 
     static link(scope, el, attrs, ctrls, transclude) {
         if (el[0].tagName !== 'A') {
-            throw new Error('uiLink restricted for "a" tag');
+            throw new Error(errors.TAG_RESTRICTED);
         }
 
-        const iamMod = Object.keys(iamCssInitMods).length ? JSON.stringify(iamCssInitMods) : null;
+        // Устанавливает исходному атрибуту JSON влияющий на CSS-стилизацию
+        attrs.$set('ui-link', JSON.stringify(ctrls.uiLink));
 
-        // Устанавливаем настройки для css по умолчанию, либо берём переданные
-        if (!attrs.uiLink && iamMod) {
-            attrs.$set('ui-link', iamMod);
-        }
-
+        // Заменяем лишнюю вёрстку
         el.find('ng-transclude').replaceWith(transclude());
     }
 
@@ -36,5 +33,7 @@ class uiLink {
         }
     }
 }
+
+export const cl = uiLink;
 
 export default uiLink.module.name;
