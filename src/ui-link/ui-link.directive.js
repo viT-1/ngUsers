@@ -1,4 +1,4 @@
-import { config, errors } from './ui-link.config';
+import { config, naming, errors } from './ui-link.config';
 import UiLinkCtrl from './ui-link.controller';
 
 // @link: https://stackoverflow.com/a/33714913
@@ -10,10 +10,6 @@ class UiLinkDirective {
         this.controller = ctrl;
     }
 
-    // compile(tElement) {
-    //     return this.link.bind(this);
-    // }
-
     // eslint-disable-next-line class-methods-use-this
     link(scope, el, attrs, ctrl, transclude) {
         if (el[0].tagName !== 'A') {
@@ -21,14 +17,10 @@ class UiLinkDirective {
         }
 
         // Устанавливает исходному атрибуту JSON влияющий на CSS-стилизацию
-        attrs.$set('ui-link', JSON.stringify(ctrl.uiLink));
+        attrs.$set(naming.attr, JSON.stringify(ctrl[naming.aka]));
 
         // Заменяем лишнюю вёрстку
         el.find('ng-transclude').replaceWith(transclude());
-    }
-
-    static get aka() {
-        return 'uiLink';
     }
 }
 

@@ -1,9 +1,9 @@
-import { iamCssInitMods } from './ui-link.config';
+import { iamCssInitMods, naming } from './ui-link.config';
 
 class UiLink {
     $onInit() {
         // Дополняем данные из binded attributes to controller
-        this.uiLink = { ...iamCssInitMods, ...this.uiLink };
+        this[naming.aka] = { ...iamCssInitMods, ...this[naming.aka] };
     }
 }
 

@@ -2,11 +2,18 @@ import angular from 'angular';
 import 'angular-mocks';
 
 // Логика по инициализации директивы присутствует в точке входа
-import { config, iamCssInitMods, errors } from './ui-link.config';
+import {
+    naming,
+    config,
+    iamCssInitMods,
+    errors,
+} from './ui-link.config';
+
+// Помимо имени инициализируется модуль, который идёт в angular.mock.module
 import UiLinkModuleName from '@/ui-link';
 import tmplUiLink from './ui-link.html';
 
-describe(`${UiLinkModuleName} directiive`, () => {
+describe(`${naming.aka} directiive`, () => {
     let $compile;
     let $rootScope;
 
@@ -37,7 +44,7 @@ describe(`${UiLinkModuleName} directiive`, () => {
     }));
 
     test('Директива отрабатывает - есть html', () => {
-        const elem = getElem('<a ui-link></a>');
+        const elem = getElem(`<a ${naming.attr}></a>`);
 
         expect(elem.html()).not.toEqual('');
     });
@@ -46,25 +53,25 @@ describe(`${UiLinkModuleName} directiive`, () => {
     // @link: http://www.bradoncode.com/blog/2015/06/23/ngmock-fundamentals-testing-exceptions/
     // @link: https://stackoverflow.com/questions/42192977/how-to-capture-compile-or-digest-error-angularjs-directive-with-templateurl
     test('Попытка применить директиву к любому тэгу кроме "a" вызывает ошибку', () => {
-        expect(() => { getElem('<span ui-link>pseudolink</span>'); })
+        expect(() => { getElem(`<span ${naming.attr}>pseudolink</span>`); })
             .toThrowError(errors.TAG_RESTRICTED);
     });
 
     // @link: https://stackoverflow.com/a/24761145
-    test('Контроллер определён и содержит свойство uiLink', () => {
+    test(`Контроллер определён и содержит свойство ${naming.attr}`, () => {
         expect.assertions(2);
 
-        const elem = getElem('<a ui-link></a>');
-        const vm = elem.controller('uiLink');
+        const elem = getElem(`<a ${naming.attr}></a>`);
+        const vm = elem.controller(naming.aka);
 
         expect(vm).toBeDefined();
-        expect(vm.uiLink).toBeDefined();
+        expect(vm[naming.aka]).toBeDefined();
     });
 
     test('Передаваемый html отрисовывается (transclude) директивой как есть', () => {
         expect.assertions(4);
 
-        const elem = getElem('<a ui-link="cvftest"><some>Some</some><best>test</best></a>');
+        const elem = getElem(`<a ${naming.attr}><some>Some</some><best>test</best></a>`);
         // jQuery, который в Angular, не работает с атрибутами, только с тэгами
         // @link: https://stackoverflow.com/questions/29414773/how-are-they-using-this-angular-jqlite-find-method-to-select-a-element-by-attr
         const someElem = elem.find('some');
@@ -77,17 +84,17 @@ describe(`${UiLinkModuleName} directiive`, () => {
     });
 
     test('Атрибут директивы по умолчанию должен быть дополнен информацией о версии директивы', () => {
-        const elem = getElem('<a ui-link></a>');
+        const elem = getElem(`<a ${naming.attr}></a>`);
 
-        expect(elem.attr('ui-link')).toBe(JSON.stringify(iamCssInitMods));
+        expect(elem.attr(naming.attr)).toBe(JSON.stringify(iamCssInitMods));
     });
 
     test('Если в директиву передаётся информации о версии, она не должна перезатираться установками', () => {
         const version = '0.99';
         const inputMods = { v: version };
 
-        const elem = getElem(`<a ui-link='${JSON.stringify(inputMods)}'></a>`);
+        const elem = getElem(`<a ${naming.attr}='${JSON.stringify(inputMods)}'></a>`);
         // console.log(elem[0].outerHTML);
-        expect(elem.attr('ui-link')).toContain(version);
+        expect(elem.attr(naming.attr)).toContain(version);
     });
 });

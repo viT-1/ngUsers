@@ -1,6 +1,11 @@
 // @link: https://toddmotto.com/no-scope-soup-bind-to-controller-angularjs/
 // https://toddmotto.com/digging-into-angulars-controller-as-syntax/
 
+export const naming = {
+    aka: 'uiA',
+    attr: 'ui-a',
+};
+
 export const config = {
     restrict: 'A',
     templateUrl: '/tmpl/ui-link',
@@ -12,7 +17,7 @@ export const config = {
     bindToController: {
         // Предполагается на вход литерал, а не переменная вышестоящего scope
         // но также в контроллере обновляем это значение, потому <, а не @
-        uiLink: '<?',
+        [naming.aka]: '<?',
     },
     // Стандартным образом: через $ctrl, прибиндить значения в шаблон директивы не получится
     // такое поведение только у компонент, но мы будем придерживаться тех же правил
