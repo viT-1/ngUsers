@@ -5,7 +5,9 @@ const jestConfig = {
     testRegex: `./${sourcePath}/(.*?)/(.*?)\\.(test|spec)\\.js$`,
 
     // Что исключить из вышеуказанной маски?
-    testPathIgnorePatterns: [],
+    testPathIgnorePatterns: [
+        'some',
+    ],
 
     // Каталоги создаваемые node-модулем должны храниться в node_modules,
     // а не засорять корневой каталог

@@ -1,6 +1,5 @@
 import angular from 'angular';
 
-// import uiLinkModuleName from './ui-link.module';
 import UiLinkDirective from './ui-link.directive';
 
 let module;

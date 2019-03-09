@@ -1,26 +1,24 @@
 import angular from 'angular';
 import 'angular-mocks';
 
-import uiLinkModuleName from './ui-link.module';
-import { cl } from './ui-link.module';
-import tmplUiLink from './ui-link.html';
+// Логика по инициализации директивы присутствует в точке входа
 import { config, iamCssInitMods, errors } from './ui-link.config';
+import UiLinkModuleName from '@/ui-link';
+import tmplUiLink from './ui-link.html';
 
-// @link: https://www.sitepoint.com/angular-testing-tips-testing-directives/
-// @link: https://davidtang.io/2015/09/01/unit-testing-directives-part-2.html
-describe(uiLinkModuleName, () => {
+describe(`${UiLinkModuleName} directiive`, () => {
     let $compile;
-    let $scope;
+    let $rootScope;
 
     function getElem(srcHtml) {
-        const elem = $compile(srcHtml)($scope);
-        $scope.$digest();
+        const elem = $compile(srcHtml)($rootScope);
+        $rootScope.$digest();
 
         return elem;
     }
 
     beforeEach(() => {
-        const app = cl.module;
+        const app = angular.module('testApp', [UiLinkModuleName]);
 
         // @link: https://embed.plnkr.co/plunk/pzSMzv
         // @link: https://groups.google.com/forum/#!topic/angular/K-KEWKjiI4Y
@@ -29,11 +27,13 @@ describe(uiLinkModuleName, () => {
         });
     });
 
-    beforeEach(angular.mock.module(cl.aka));
+    beforeEach(() => {
+        angular.mock.module('testApp');
+    });
 
     beforeEach(angular.mock.inject(($injector) => {
         $compile = $injector.get('$compile');
-        $scope = $injector.get('$rootScope').$new();
+        $rootScope = $injector.get('$rootScope');
     }));
 
     test('Директива отрабатывает - есть html', () => {
