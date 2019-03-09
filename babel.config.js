@@ -4,8 +4,7 @@
 module.exports = (api) => {
     api.cache(false);
 
-    // const presets = ['@babel/preset-env'];
-    const presets = [['@babel/preset-env', { useBuiltIns: 'entry' }]];
+    const presets = ['@babel/preset-env'];
     const plugins = [['angularjs-annotate', { explicitOnly: true }]];
 
     return {

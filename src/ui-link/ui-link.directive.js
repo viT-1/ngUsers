@@ -1,5 +1,3 @@
-import '@babel/polyfill'; // Необходим для Object.assign
-
 import { config, errors } from './ui-link.config';
 import UiLinkCtrl from './ui-link.controller';
 

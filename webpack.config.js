@@ -53,7 +53,7 @@ const allEntries = {
     // entry mask samples
     // ...getEntries(sourcePath, '**/*.js'),
     ...filteredCssEntries,
-    'index.js': path.resolve(sourcePath, 'index.js'),
+    'index.js': ['@babel/polyfill', path.resolve(sourcePath, 'index.js')],
 };
 
 const webpackConfig = {
