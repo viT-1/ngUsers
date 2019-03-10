@@ -1,3 +1,1 @@
-*[ui-a *= '"v":"1.'] {
-    color: violet;
-}
+@import './ui-link.light.styl';

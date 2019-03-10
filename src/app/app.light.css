@@ -1,4 +1,1 @@
-#app{
-    padding: 2em; /* some comment */
-    background-image: url('app__background.light.png');
-}
+@import './app.light.styl';

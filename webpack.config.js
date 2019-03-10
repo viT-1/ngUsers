@@ -31,23 +31,19 @@ const fileLoader = {
 };
 
 // Скопипащено @link https://stackoverflow.com/questions/42670633/using-webpack-to-transpile-es6-as-separate-files
-function getEntries(srcDir, pattern) {
+function getEntries(srcDir, pattern, retOnlyFolders) {
     const entries = {};
 
     glob.sync(`${srcDir}/${pattern}`).forEach((file) => {
+        if (!retOnlyFolders.includes(file.split('/')[1])) return;
+
         entries[file.replace(`${srcDir}/`, '')] = path.join(__dirname, file);
     });
 
     return entries;
 }
 
-const cssEntries = getEntries(sourcePath, `**/*.${theme}.css`);
-
-const filteredCssEntries = Object.keys(cssEntries)
-    .filter(key => cssFilter.includes(key.split('/')[0]))
-    .reduce((obj, key) => ({ ...obj, [key]: cssEntries[key] }), {});
-
-// console.log(filteredCssEntries);
+const filteredCssEntries = getEntries(sourcePath, `**/*.${theme}.css`, cssFilter);
 
 const allEntries = {
     // entry mask samples
@@ -67,12 +63,14 @@ const webpackConfig = {
             exclude: /node_modules/,
             use: ['babel-loader'],
         }, {
-            test: /\.css$/,
+            test: /\.(css|styl)$/,
             exclude: /node_modules/,
             use: [
                 fileLoader,
                 'extract-loader',
                 'css-loader',
+                // @link: https://github.com/stylus/stylus/issues/2282
+                'stylus-loader',
             ],
         }, {
             test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
@@ -88,6 +86,7 @@ const webpackConfig = {
         filename: '[name]',
     },
     resolve: {
+        extensions: ['.js', '.css'],
         alias: {
             '~': path.resolve(__dirname),
             '@': path.resolve(__dirname, sourcePath),
