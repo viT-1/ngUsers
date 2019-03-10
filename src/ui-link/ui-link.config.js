@@ -1,10 +1,9 @@
 // @link: https://toddmotto.com/no-scope-soup-bind-to-controller-angularjs/
 // https://toddmotto.com/digging-into-angulars-controller-as-syntax/
 
-export const naming = {
-    aka: 'uiA',
-    attr: 'ui-a',
-};
+import jsonNaming from './ui-link.naming.json';
+
+export const naming = jsonNaming;
 
 export const config = {
     restrict: 'A',

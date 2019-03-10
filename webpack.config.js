@@ -86,7 +86,6 @@ const webpackConfig = {
         filename: '[name]',
     },
     resolve: {
-        extensions: ['.js', '.css'],
         alias: {
             '~': path.resolve(__dirname),
             '@': path.resolve(__dirname, sourcePath),
