@@ -23,10 +23,6 @@ class UiBaseDirective {
             this.bindToController = { [params.naming.aka]: '<?' };
         }
 
-        if (params.templateUrl) {
-            delete config.template;
-        }
-
         // Передаются параметры, значение params по умолчанию затирается
         // Если нет контроллера, то указываем базовый
         const assignCtrl = params.controller ? {} : {
@@ -37,6 +33,10 @@ class UiBaseDirective {
         };
 
         Object.assign(this, config, params, assignCtrl);
+
+        if (this.templateUrl) {
+            delete this.template;
+        }
     }
 
     link(scope, el, attrs, ctrl, transclude) {

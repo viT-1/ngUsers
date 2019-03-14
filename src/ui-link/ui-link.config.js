@@ -5,8 +5,8 @@ import jsonNaming from './ui-link.naming.json';
 
 export const naming = jsonNaming;
 
+// Устраивают настройки ui-base-directive
 export const config = {
-    templateUrl: '/tmpl/ui-link',
 };
 
 // skins определяются подключенным css-файлом.

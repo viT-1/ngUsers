@@ -10,7 +10,6 @@ import {
 
 // Помимо имени инициализируется модуль, который идёт в angular.mock.module
 import ModuleName from '@/ui-link';
-import tmpl from './ui-link.html';
 
 describe(`${naming.aka} directiive`, () => {
     let $compile;
@@ -24,13 +23,8 @@ describe(`${naming.aka} directiive`, () => {
     }
 
     beforeEach(() => {
-        const app = angular.module('testApp', [ModuleName]);
-
-        // @link: https://embed.plnkr.co/plunk/pzSMzv
-        // @link: https://groups.google.com/forum/#!topic/angular/K-KEWKjiI4Y
-        app.run(($templateCache) => {
-            $templateCache.put(config.templateUrl, tmpl);
-        });
+        angular.module('testApp', [ModuleName]);
+        // Не нужен $templateCache, так как вместо templateUrl из базовой директивы указан template
     });
 
     beforeEach(() => {
@@ -49,6 +43,22 @@ describe(`${naming.aka} directiive`, () => {
 
         expect(elem.html()).not.toEqual('');
         expect(elem.attr(naming.attr)).not.toEqual('');
+    });
+
+    // Тест соответствует баззовой директиве
+    test('Передаваемый html отрисовывается (transclude) директивой как есть', () => {
+        expect.assertions(4);
+
+        const elem = getElem(`<a ${naming.attr}><some>Some</some><best>test</best></a>`);
+        // jQuery, который в Angular, не работает с атрибутами, только с тэгами
+        // @link: https://stackoverflow.com/questions/29414773/how-are-they-using-this-angular-jqlite-find-method-to-select-a-element-by-attr
+        const someElem = elem.find('some');
+        const testElem = elem.find('best');
+
+        expect(someElem).toBeDefined();
+        expect(testElem).toBeDefined();
+        expect(someElem.text()).toEqual('Some');
+        expect(testElem.text()).toEqual('test');
     });
 
     // Для сбора стэка ошибок и логирования есть более навороченный инструмент $exceptionHandler
