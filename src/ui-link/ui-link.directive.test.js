@@ -4,7 +4,6 @@ import 'angular-mocks';
 // Логика по инициализации директивы присутствует в точке входа
 import {
     naming,
-    config,
     errors,
 } from './ui-link.config';
 
