@@ -48,6 +48,7 @@ class MockHttp {
         $httpBackend.whenGET('/tmpl/vp-greeting').respond(200, templates['vp-greeting']);
         $httpBackend.whenGET('/tmpl/app').respond(200, templates.app);
         $httpBackend.whenGET('/tmpl/ui-link').respond(200, templates['ui-link']);
+        $httpBackend.whenGET('/tmpl/ui-nav').respond(200, templates['ui-nav']);
 
         // Для single-page роутинга Route-provider
         $httpBackend.whenGET(/\.html/).passThrough();

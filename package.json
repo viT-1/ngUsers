@@ -55,6 +55,7 @@
     },
     "dependencies": {
         "@babel/polyfill": "^7.2.5",
+        "@uirouter/angularjs": "^1.0.22",
         "angular": "^1.7.7",
         "angular-mocks": "^1.7.7"
     }
