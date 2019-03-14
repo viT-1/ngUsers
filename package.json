@@ -10,7 +10,9 @@
         "ngMockE2E",
         "css entry",
         "multiple entries",
-        "stylus"
+        "stylus",
+        "AMCSS",
+        "iamCss"
     ],
     "repository": {
         "type": "git",

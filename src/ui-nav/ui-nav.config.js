@@ -10,4 +10,5 @@ export const iamCssInitMods = {
 
 export const config = {
     templateUrl: '/tmpl/ui-nav',
+    transclude: false,
 };

@@ -9,8 +9,8 @@ import {
 } from './ui-link.config';
 
 // Помимо имени инициализируется модуль, который идёт в angular.mock.module
-import UiLinkModuleName from '@/ui-link';
-import tmplUiLink from './ui-link.html';
+import ModuleName from '@/ui-link';
+import tmpl from './ui-link.html';
 
 describe(`${naming.aka} directiive`, () => {
     let $compile;
@@ -24,12 +24,12 @@ describe(`${naming.aka} directiive`, () => {
     }
 
     beforeEach(() => {
-        const app = angular.module('testApp', [UiLinkModuleName]);
+        const app = angular.module('testApp', [ModuleName]);
 
         // @link: https://embed.plnkr.co/plunk/pzSMzv
         // @link: https://groups.google.com/forum/#!topic/angular/K-KEWKjiI4Y
         app.run(($templateCache) => {
-            $templateCache.put(config.templateUrl, tmplUiLink);
+            $templateCache.put(config.templateUrl, tmpl);
         });
     });
 

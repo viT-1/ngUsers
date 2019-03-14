@@ -11,7 +11,6 @@ class UiLinkDirective extends UiBaseDirective {
         super({ ...config, naming, iamCss: iamCssInitMods });
     }
 
-    // eslint-disable-next-line class-methods-use-this
     link(scope, el, attrs, ctrl, transclude) {
         if (el[0].tagName !== 'A') {
             throw new Error(errors.TAG_RESTRICTED);
