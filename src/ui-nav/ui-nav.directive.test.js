@@ -16,6 +16,8 @@ import ModuleName from '@/ui-nav';
 import tmpl from './ui-nav.html';
 import iamCssJson from './ui-nav.iamCss.json';
 
+import DirectiveCtrl from './ui-nav.controller';
+
 describe(`${naming.aka} directiive`, () => {
     let $compile;
     let $rootScope;
@@ -86,5 +88,11 @@ describe(`${naming.aka} directiive`, () => {
         const elem = getElem(`<nav ${naming.attr}></nav>`);
 
         expect(elem.attr('role')).toBeUndefined();
+    });
+
+    test('Директива управляется собственным контроллером (не базовым)', () => {
+        const elem = getElem(`<div ${naming.attr}></div>`);
+
+        expect(elem.controller(naming.aka) instanceof DirectiveCtrl).toBe(true);
     });
 });

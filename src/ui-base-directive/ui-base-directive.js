@@ -46,9 +46,15 @@ class UiBaseDirective {
             attrs.$set(this.naming.attr, JSON.stringify(ctrl[this.naming.aka]));
         }
 
-        // Заменяем лишнюю вёрстку
+        // Проблема с ng-repeat
+        // @link: https://github.com/angular/angular.js/issues/7874#issuecomment-47647528
         if (this.transclude) {
-            el.find('ng-transclude').replaceWith(transclude());
+            // Так не работает в связке с ng-repeat на нашем же DOM-элементе
+            // el.find('ng-transclude').replaceWith(transclude());
+            transclude((clone) => {
+                // Заменяем лишнюю вёрстку-обёртку
+                el.find('ng-transclude').replaceWith(clone);
+            });
         }
     }
 }

@@ -1,17 +1,24 @@
 import UiBaseDirective from '@/ui-base-directive';
+import UiNavDirectiveCtrl from './ui-nav.controller';
 import { config, naming, iamCssInitMods } from './ui-nav.config';
 
 class UiNavDirective extends UiBaseDirective {
     // В базовом классе нельзя не передавать параметры,
     // потому дополняем конструктор параметрами
     constructor(params) {
+        const iamCss = params && params.iamCss ? params.iamCss : iamCssInitMods;
+
         super({
             ...config,
             naming,
-            iamCss: iamCssInitMods,
+            iamCss,
+            controller: () => new UiNavDirectiveCtrl({
+                naming,
+                iamCss,
+            }),
             // Чтобы иметь возможность создавать директиву
             // с отличными от config настройками (например iamCss dirHoriz)
-            params,
+            ...params,
         });
     }
 
