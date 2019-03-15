@@ -41,9 +41,14 @@ class UiBaseDirective {
 
     link(scope, el, attrs, ctrl, transclude) {
         const attrValue = ctrl[this.naming.aka];
-        // Устанавливает исходному атрибуту JSON влияющий на CSS-стилизацию
+
         if (attrValue) {
-            attrs.$set(this.naming.attr, JSON.stringify(ctrl[this.naming.aka]));
+            const strAttrValue = JSON.stringify(ctrl[this.naming.aka]);
+            if (strAttrValue !== '{}') {
+                // Устанавливает исходному атрибуту JSON влияющий на CSS-стилизацию
+                console.log('onLink', this.naming.aka, strAttrValue);
+                attrs.$set(this.naming.attr, strAttrValue);
+            }
         }
 
         // Проблема с ng-repeat

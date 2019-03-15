@@ -1,6 +1,5 @@
-version = "'" + '"v":"' + 'v1-' + "'";
-vertical = "'" + '"dir":"' + dirVert + '"' + "'";
-
-*[{attr} *= {version}][{attr} *= {vertical}] {
+// Невозможно опираться на жёсткий порядок модификаторов,
+// потому вес селектора вынужден увеличить
+[{bAttr} *= {mVersion}][{bAttr} *= {mVertical}] {
     width: 10em;
 }

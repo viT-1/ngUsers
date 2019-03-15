@@ -1,8 +1,9 @@
 json('./ui-link.naming.json');
 
-version = "'" + '"v"' + ':"v1-' + "'";
+bAttr = attr;
+mVersion = "'" + '"v"' + ':"v1-' + "'";
 
-*[{attr} *= {version}] {
+[{bAttr} *= {mVersion}] {
     color: violet;
     font-style: italic;
 }

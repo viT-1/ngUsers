@@ -1,2 +1,1 @@
-<a ui-a href="#/{{navItem.key}}" ui-nav__item ng-repeat="navItem in $ctrl.data.items">{{navItem.title}}</a>
-<h1>Check point</h1>
+<a ui-nav__item="{{$ctrl.uiNav}}" href="#/{{navItem.key}}" ng-repeat="navItem in $ctrl.data.items">{{navItem.title}}</a>
