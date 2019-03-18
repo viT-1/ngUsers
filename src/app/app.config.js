@@ -1,6 +1,7 @@
 import uiRouter from '@uirouter/angularjs';
 import vpGreetingModuleName from '@/vp-greeting';
 import mockHttpModuleName from '@/mock-http';
+import uiAppModuleName from '@/ui-app';
 import uiLinkModuleName from '@/ui-link';
 import uiNavModuleName from '@/ui-nav';
 
@@ -15,13 +16,8 @@ export const defaults = {
         uiRouter,
         vpGreetingModuleName,
         mockHttpModuleName,
+        uiAppModuleName,
         uiLinkModuleName,
         uiNavModuleName,
     ],
-};
-
-export const config = {
-    templateUrl: '/tmpl/app',
-    bindings: {},
-    scope: {},
 };

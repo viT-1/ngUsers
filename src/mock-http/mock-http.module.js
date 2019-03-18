@@ -46,7 +46,6 @@ class MockHttp {
         $httpBackend.whenGET('/api/greeting').respond(200, { greet: 'Complete' });
 
         $httpBackend.whenGET('/tmpl/vp-greeting').respond(200, templates['vp-greeting']);
-        $httpBackend.whenGET('/tmpl/app').respond(200, templates.app);
         $httpBackend.whenGET('/tmpl/ui-nav').respond(200, templates['ui-nav']);
 
         // Для single-page роутинга Route-provider

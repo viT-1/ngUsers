@@ -7,8 +7,7 @@ class App {
         const pa = { ...defaults, ...params };
 
         // Главный модуль ни от чего не зависит! Все компоненты отдельны.
-        this.module = angular.module(pa.name, pa.requirements)
-            .component('app', config);
+        this.module = angular.module(pa.name, pa.requirements);
 
         // Инициализация всех модулей
         // @todo: angular.module() кучи их - это происходит в import requirement

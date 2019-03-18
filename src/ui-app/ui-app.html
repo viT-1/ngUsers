@@ -1,5 +1,5 @@
-<div ui-app__content>
+<div ui-app__content="{{$ctrl.uiApp}}">
     <vp-greeting to="world"></vp-greeting>
     <p>Something <a href="st" ui-a>else</a> <a href="#other" ui-a='{"v":"v1-0"}'' title="previous link design">other</a></p>
 </div>
-<div ui-nav ui-app__nav>loading...</div>
+<div ui-nav ui-app__nav="{{$ctrl.uiApp}}">loading...</div>
