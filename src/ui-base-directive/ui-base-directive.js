@@ -37,6 +37,11 @@ class UiBaseDirective {
         if (this.templateUrl) {
             delete this.template;
         }
+
+        // Если template определён базовый, то включаем transclude
+        if (this.template && this.template.includes('ng-transclude')) {
+            this.transclude = true;
+        }
     }
 
     link(scope, el, attrs, ctrl, transclude) {
@@ -46,7 +51,6 @@ class UiBaseDirective {
             const strAttrValue = JSON.stringify(ctrl[this.naming.aka]);
             if (strAttrValue !== '{}') {
                 // Устанавливает исходному атрибуту JSON влияющий на CSS-стилизацию
-                console.log('onLink', this.naming.aka, strAttrValue);
                 attrs.$set(this.naming.attr, strAttrValue);
             }
         }

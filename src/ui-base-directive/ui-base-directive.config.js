@@ -1,7 +1,5 @@
 export const config = {
     restrict: 'A',
-    template: '<ng-transclude></ng-transclude>',
-    transclude: true,
     scope: {},
     // Стандартным образом: через $ctrl, прибиндить значения в шаблон директивы не получится
     // такое поведение только у компонент, но мы будем придерживаться тех же правил

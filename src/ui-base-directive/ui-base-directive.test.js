@@ -45,12 +45,6 @@ describe(`${naming.aka} directiive 1`, () => {
             .toThrowError(errors.NEED_NAMING);
     });
 
-    test('Директива отрабатывает - есть html', () => {
-        const elem = getElem(`<a ${naming.attr}></a>`, $compile, $rootScope);
-
-        expect(elem.html()).not.toEqual('');
-    });
-
     // @link: https://stackoverflow.com/a/24761145
     test(`Контроллер определён и содержит свойство ${naming.attr}`, () => {
         expect.assertions(2);
