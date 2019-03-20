@@ -117,7 +117,11 @@ const webpackConfig = {
     ],
     optimization: {
         minimize: true,
-        minimizer: [new TerserPlugin()],
+        minimizer: [new TerserPlugin({
+            // Иначе модули, чьё имя берётся из es6 class как this.name конфликтуют
+            // @link: https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/269
+            terserOptions: { mangle: false, keep_classnames: true },
+        })],
         splitChunks: {
             cacheGroups: {
                 commons: {

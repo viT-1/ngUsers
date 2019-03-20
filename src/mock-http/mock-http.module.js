@@ -5,10 +5,8 @@ import angular from 'angular';
 // @link: Problem https://groups.google.com/forum/#!topic/angular/iNkSs6yv3mE
 // @link: http://angular-tips.com/blog/2015/01/a-backend-less-plunker/
 
-import ngMockE2E from 'angular-mocks/ngMockE2E';
-
 import { fakeHttpTimeout } from '~/config';
-import { templates } from './mock-http.config';
+import { templates, requires } from './mock-http.config';
 
 // @url asimmittal.blogspot.com/2015/06/faking-backend-in-angularjs.html
 // Решение проблемы сделать паузу в ответе $httpBackend.whenGET
@@ -47,6 +45,9 @@ class MockHttp {
 
         $httpBackend.whenGET('/tmpl/vp-greeting').respond(200, templates['vp-greeting']);
         $httpBackend.whenGET('/tmpl/ui-nav').respond(200, templates['ui-nav']);
+        $httpBackend.whenGET('/tmpl/pg-welcome').respond(200, templates['pg-welcome']);
+        $httpBackend.whenGET('/tmpl/pg-books').respond(200, templates['pg-books']);
+        $httpBackend.whenGET('/tmpl/pg-users').respond(200, templates['pg-users']);
 
         // Для single-page роутинга Route-provider
         $httpBackend.whenGET(/\.html/).passThrough();
@@ -56,7 +57,7 @@ class MockHttp {
         try {
             return angular.module(this.name);
         } catch (err) {
-            return angular.module(this.name, [ngMockE2E])
+            return angular.module(this.name, requires)
                 .run(MockHttp.run)
                 .config(($provide) => {
                     'ngInject';

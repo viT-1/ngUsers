@@ -1,0 +1,15 @@
+{
+    "items": [{
+        "key": "welcome",
+        "title": "Главная",
+        "url": "/"
+    }, {
+        "key": "users",
+        "title": "Пользователи",
+        "url": "/users"
+    }, {
+        "key": "books",
+        "title": "Книги",
+        "url": "/books"
+    }]
+}

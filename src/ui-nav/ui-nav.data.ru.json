@@ -1,7 +1,0 @@
-{
-    "items": [
-        { "key": "main", "title": "Главная" },
-        { "key": "users", "title": "Пользователи" },
-        { "key": "books", "title": "Книги" }
-    ]
-}

@@ -1,4 +1,3 @@
-import uiRouter from '@uirouter/angularjs';
 import vpGreetingModuleName from '@/vp-greeting';
 import mockHttpModuleName from '@/mock-http';
 import uiAppModuleName from '@/ui-app';
@@ -12,8 +11,7 @@ export const defaults = {
     selector: 'body',
     // Не забываем для сборки CSS добавлять соответствующие ключи в ~/config.js cssFilter
     // @todo: надо это как-то объединить с ~/config.js, с учётом src/{folder}/{folder}.naming.json
-    requirements: [
-        uiRouter,
+    requires: [
         vpGreetingModuleName,
         mockHttpModuleName,
         uiAppModuleName,

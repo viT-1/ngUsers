@@ -1,4 +1,5 @@
 {
     "aka": "uiNav",
-    "attr": "ui-nav"
+    "attr": "ui-nav",
+    "attrItem": "__item"
 }

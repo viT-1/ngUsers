@@ -1,13 +1,13 @@
 import angular from 'angular';
 
 import UiNavDirective from './ui-nav.directive';
-import { naming } from './ui-nav.config';
+import { naming, requires } from './ui-nav.config';
 
 let module;
 try {
     module = angular.module(naming.aka);
 } catch (err) {
-    module = angular.module(naming.aka, [])
+    module = angular.module(naming.aka, requires)
         .directive(naming.aka, () => new UiNavDirective());
 }
 

@@ -1,7 +1,7 @@
 import UiBaseDirectiveCtrl from '@/ui-base-directive/ui-base-directive.controller';
 
 import { naming, iamCssInitMods } from './ui-nav.config';
-import jsonData from './ui-nav.data.ru.json';
+import { jsonData } from '@/routing';
 
 class UiNavDirectiveCtrl extends UiBaseDirectiveCtrl {
     // Дополнительные параметры возможно прокидывать только через конструктор директивы

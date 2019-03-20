@@ -13,10 +13,13 @@ import {
 // Например указать горизонтальное расположение по умолчанию (не в html)
 // тогда надо импортировать не имя зависимости, а сам класс директивы
 import ModuleName from '@/ui-nav';
+
 import tmpl from './ui-nav.html';
 import iamCssJson from './ui-nav.iamCss.json';
-
 import DirectiveCtrl from './ui-nav.controller';
+
+// По данным определяется количество элементов
+import { jsonData as navData } from '@/routing';
 
 describe(`${naming.aka} directiive`, () => {
     let $compile;
@@ -94,5 +97,15 @@ describe(`${naming.aka} directiive`, () => {
         const elem = getElem(`<div ${naming.attr}></div>`);
 
         expect(elem.controller(naming.aka) instanceof DirectiveCtrl).toBe(true);
+    });
+
+    test('Директива рисует элементы списка с гиперссылками на разделы, соответствующие json', () => {
+        expect.assertions(2);
+        const elem = getElem(`<nav ${naming.attr}></nav>`);
+        const queryItems = `[${naming.attr}${naming.attrItem}][href ^= "#!/"]`;
+        const items = elem[0].querySelectorAll(queryItems);
+
+        expect(items.length).toBe(navData.items.length);
+        expect(items[0].innerHTML).toBe(navData.items[0].title);
     });
 });
