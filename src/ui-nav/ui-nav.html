@@ -1,2 +1,4 @@
-<a ui-nav__item="{{$ctrl.uiNav}}" ui-sref="{{navItem.key}}"
-    ng-repeat="navItem in $ctrl.data.items">{{navItem.title}}</a>
+<fake-tag ng-repeat="navItem in $ctrl.data.items">
+    <span ng-if="$ctrl.navItemCurrent == navItem.key" ui-nav__item="{{::$ctrl.uiNav}}">{{::navItem.title}}</span>
+    <a ng-if="$ctrl.navItemCurrent != navItem.key" ui-nav__item="{{::$ctrl.uiNav}}" ui-sref="{{::navItem.key}}">{{::navItem.title}}</a>
+</fake-tag>

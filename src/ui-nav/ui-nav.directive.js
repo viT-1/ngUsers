@@ -12,7 +12,9 @@ class UiNavDirective extends UiBaseDirective {
             ...config,
             naming,
             iamCss,
-            controller: () => new UiNavDirectiveCtrl({
+            controller: ($transitions, $state) => new UiNavDirectiveCtrl({
+                $transitions,
+                $state,
                 naming,
                 iamCss,
             }),

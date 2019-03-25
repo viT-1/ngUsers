@@ -62,7 +62,18 @@ class UiBaseDirective {
             // el.find('ng-transclude').replaceWith(transclude());
             transclude((clone) => {
                 // Заменяем лишнюю вёрстку-обёртку
-                el.find('ng-transclude').replaceWith(clone);
+                if (el[0].tagName === 'NG-TRANSCLUDE') {
+                    // Фильтрация в clone комментариев стандартных директив angularjs -> err
+                    // console.log(this.naming.aka, clone);
+                    // const filtered = Object.entries(clone).reduce((acc, pair) => {
+                    //     const [key, value] = pair;
+                    //     return (value.nodeType === 3) ? { ...acc, [key]: value } : acc;
+                    // }, {});
+                    // el.replaceWith(filtered);
+                    el.replaceWith(clone);
+                } else {
+                    el.find('ng-transclude').replaceWith(clone);
+                }
             });
         }
     }

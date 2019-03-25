@@ -3,6 +3,7 @@ import mockHttpModuleName from '@/mock-http';
 import uiAppModuleName from '@/ui-app';
 import uiLinkModuleName from '@/ui-link';
 import uiNavModuleName from '@/ui-nav';
+import fakeTagModuleName from '@/fake-tag';
 
 export const aka = 'vpApp';
 
@@ -17,5 +18,6 @@ export const defaults = {
         uiAppModuleName,
         uiLinkModuleName,
         uiNavModuleName,
+        fakeTagModuleName,
     ],
 };
