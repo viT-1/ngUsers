@@ -40,7 +40,7 @@ describe(`${naming.aka} directiive`, () => {
         expect.assertions(2);
         const elem = getElem(`<a ${naming.attr}></a>`);
 
-        expect(elem.html()).not.toEqual('');
+        expect(elem.html(true)).not.toEqual('');
         expect(elem.attr(naming.attr)).not.toEqual('');
     });
 

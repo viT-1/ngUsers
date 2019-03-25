@@ -111,3 +111,44 @@ describe(`${naming.aka} directiive 2`, () => {
         expect(elem.attr(naming.attr)).toBe('');
     });
 });
+
+describe(`${naming.aka} directiive 3`, () => {
+    test('Если передаём для директивы шаблон с transclude, то свойство выставляется в true', () => {
+        const oDir = new UiBaseDirective({
+            naming,
+            template: '<p><u><b><ng-transclude></ng-transclude></b></u></p>',
+            transclude: false,
+        });
+
+        expect(oDir.transclude).toBe(true);
+    });
+});
+
+describe(`${naming.aka} directiive 4`, () => {
+    let $compile;
+    let $rootScope;
+
+    beforeEach(() => {
+        angular.module('testApp', [])
+            .directive(naming.aka, () => new UiBaseDirective({
+                naming,
+                template: '<p><u><b><ng-transclude></ng-transclude></b></u></p>',
+                transclude: false,
+            }));
+    });
+
+    beforeEach(() => {
+        angular.mock.module('testApp');
+    });
+
+    beforeEach(angular.mock.inject(($injector) => {
+        $compile = $injector.get('$compile');
+        $rootScope = $injector.get('$rootScope');
+    }));
+
+    test('Элемент/атрибут ng-transclude не должен попадать в результирующую вёрстку', () => {
+        const elem = getElem(`<span ${naming.attr}></span><span ${naming.attr}>Text</span>`, $compile, $rootScope);
+
+        expect(elem[0].outerHTML.includes('ng-transclude')).toBe(false);
+    });
+});

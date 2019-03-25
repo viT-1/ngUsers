@@ -61,18 +61,24 @@ class UiBaseDirective {
             // Так не работает в связке с ng-repeat на нашем же DOM-элементе
             // el.find('ng-transclude').replaceWith(transclude());
             transclude((clone) => {
-                // Заменяем лишнюю вёрстку-обёртку
-                if (el[0].tagName === 'NG-TRANSCLUDE') {
-                    // Фильтрация в clone комментариев стандартных директив angularjs -> err
-                    // console.log(this.naming.aka, clone);
-                    // const filtered = Object.entries(clone).reduce((acc, pair) => {
-                    //     const [key, value] = pair;
-                    //     return (value.nodeType === 3) ? { ...acc, [key]: value } : acc;
-                    // }, {});
-                    // el.replaceWith(filtered);
-                    el.replaceWith(clone);
+                // Если для transclude есть элементы
+                if (clone[0]) {
+                    // Заменяем лишнюю вёрстку-обёртку
+                    if (el[0].tagName === 'NG-TRANSCLUDE') {
+                        // Фильтрация в clone комментариев стандартных директив angularjs -> err
+                        // console.log(this.naming.aka, clone);
+                        // const filtered = Object.entries(clone).reduce((acc, pair) => {
+                        //     const [key, value] = pair;
+                        //     return (value.nodeType === 3) ? { ...acc, [key]: value } : acc;
+                        // }, {});
+                        // el.replaceWith(filtered);
+                        el.replaceWith(clone);
+                    } else {
+                        el.find('ng-transclude').replaceWith(clone);
+                    }
                 } else {
-                    el.find('ng-transclude').replaceWith(clone);
+                    // Если на ng-transclude ничего не пришло, шаблон отрисовываем без ng-transclude
+                    el.find('ng-transclude').parent().empty();
                 }
             });
         }
