@@ -66,6 +66,7 @@ class UiBaseDirective {
                     // Заменяем лишнюю вёрстку-обёртку
                     if (el[0].tagName === 'NG-TRANSCLUDE') {
                         // Фильтрация в clone комментариев стандартных директив angularjs -> err
+                        // @link: https://github.com/angular/angular.js/issues/8722
                         // console.log(this.naming.aka, clone);
                         // const filtered = Object.entries(clone).reduce((acc, pair) => {
                         //     const [key, value] = pair;
