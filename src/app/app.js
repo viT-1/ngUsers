@@ -9,6 +9,12 @@ class App {
         // Главный модуль ни от чего не зависит! Все компоненты отдельны.
         this.module = angular.module(pa.name, pa.requires);
 
+        this.module.config(($compileProvider) => {
+            'ngInject';
+
+            $compileProvider.debugInfoEnabled(false);
+        });
+
         // Инициализация всех модулей
         // @todo: angular.module() кучи их - это происходит в import requirement
 
