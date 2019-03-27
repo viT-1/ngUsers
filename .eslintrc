@@ -1,11 +1,18 @@
 {
+    "settings": {
+        "import/resolver": {
+            "webpack": {
+                "config": "webpack.config.js"
+            }
+        }
+    },
     "env": {
         "browser": true,
         "es6": true
     },
     "rules": {
         "indent": ["error", 4],
-        "no-new": 0
+        "no-new": 0,
     },
     "overrides": [{
         "files": ["**/*.test.js"],
