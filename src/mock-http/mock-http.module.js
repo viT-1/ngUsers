@@ -45,6 +45,7 @@ class MockHttp {
 
         $httpBackend.whenGET('/tmpl/vp-greeting').respond(200, templates['vp-greeting']);
         $httpBackend.whenGET('/tmpl/ui-nav').respond(200, templates['ui-nav']);
+        $httpBackend.whenGET('/tmpl/ui-nav/item').respond(200, templates['ui-nav__item']);
         $httpBackend.whenGET('/tmpl/pg-welcome').respond(200, templates['pg-welcome']);
         $httpBackend.whenGET('/tmpl/pg-books').respond(200, templates['pg-books']);
         $httpBackend.whenGET('/tmpl/pg-users').respond(200, templates['pg-users']);

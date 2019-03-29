@@ -12,11 +12,14 @@ import {
 // В принципе можно задать модуль с другими изначальными настройками.
 // Например указать горизонтальное расположение по умолчанию (не в html)
 // тогда надо импортировать не имя зависимости, а сам класс директивы
-import ModuleName from '@/ui-nav';
+import moduleName from '@/ui-nav';
 
 import tmpl from './ui-nav.html';
 import iamCssJson from './ui-nav.iamCss.json';
 import DirectiveCtrl from './ui-nav.controller';
+
+import tmplItem from './ui-nav__item.html';
+import { config as configItem } from './ui-nav__item.config';
 
 // По данным определяется количество элементов
 import { jsonData as navData } from '@/routing';
@@ -33,13 +36,13 @@ describe(`${naming.aka} directiive`, () => {
     }
 
     beforeEach(() => {
-        const app = angular.module('testApp', [ModuleName]);
-
-        // @link: https://embed.plnkr.co/plunk/pzSMzv
-        // @link: https://groups.google.com/forum/#!topic/angular/K-KEWKjiI4Y
-        app.run(($templateCache) => {
-            $templateCache.put(config.templateUrl, tmpl);
-        });
+        angular.module('testApp', [moduleName])
+            // @link: https://embed.plnkr.co/plunk/pzSMzv
+            // @link: https://groups.google.com/forum/#!topic/angular/K-KEWKjiI4Y
+            .run(($templateCache) => {
+                $templateCache.put(config.templateUrl, tmpl);
+                $templateCache.put(configItem.templateUrl, tmplItem);
+            });
     });
 
     beforeEach(() => {

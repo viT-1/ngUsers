@@ -8,7 +8,7 @@ import {
 } from './ui-link.config';
 
 // Помимо имени инициализируется модуль, который идёт в angular.mock.module
-import ModuleName from '@/ui-link';
+import moduleName from '@/ui-link';
 
 describe(`${naming.aka} directiive`, () => {
     let $compile;
@@ -22,7 +22,7 @@ describe(`${naming.aka} directiive`, () => {
     }
 
     beforeEach(() => {
-        angular.module('testApp', [ModuleName]);
+        angular.module('testApp', [moduleName]);
         // Не нужен $templateCache, так как вместо templateUrl из базовой директивы указан template
     });
 

@@ -13,9 +13,8 @@ class UiNavDirective extends UiBaseDirective {
             naming,
             // Если определяем свой контроллер, то iamCss нет смысла передавать в базовую директиву
             // iamCss,
-            controller: ($transitions, $state) => new UiNavDirectiveCtrl({
-                $transitions,
-                $state,
+            controller: RoutingSrvc => new UiNavDirectiveCtrl({
+                RoutingSrvc,
                 naming,
                 iamCss,
             }),
