@@ -1,5 +1,5 @@
 // Для элемента меню Используем те же модификаторы, что и для всего меню
-import { iamCssInitMods as navMods } from './ui-nav.config';
+// import { iamCssInitMods as navMods } from './ui-nav.config';
 
 class UiNavItem {
     // @link: https://ultimatecourses.com/blog/angular-1-5-lifecycle-hooks
@@ -10,7 +10,7 @@ class UiNavItem {
             const { isCurrent } = this.data;
             if (isCurrent !== this.wasCurrent) {
                 this.wasCurrent = isCurrent;
-                this.navItemMods = { ...navMods, isCurrent };
+                this.navItemMods = { ...this.mods, isCurrent };
             }
         }
     }

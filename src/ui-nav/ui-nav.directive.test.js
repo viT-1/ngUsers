@@ -111,4 +111,13 @@ describe(`${naming.aka} directiive`, () => {
         expect(items.length).toBe(navData.items.length);
         expect(items[0].innerHTML).toBe(navData.items[0].title);
     });
+
+    test('Если в директиву ui-nav передать модификатор отличный от config,'
+        + ' то и в ui-nav__item будет использоваться тот же', () => {
+        const elem = getElem(`<nav ${naming.attr}='{"dir":"555"}'></nav>`);
+        const queryItems = `[${naming.attr}${naming.attrItem} *= '"dir":"555"']`;
+        const items = elem[0].querySelectorAll(queryItems);
+
+        expect(items.length).toBeGreaterThan(0);
+    });
 });

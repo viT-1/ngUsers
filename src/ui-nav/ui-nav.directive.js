@@ -6,7 +6,8 @@ class UiNavDirective extends UiBaseDirective {
     // В базовом классе нельзя не передавать параметры,
     // потому дополняем конструктор параметрами
     constructor(params) {
-        const iamCss = params && params.iamCss ? params.iamCss : iamCssInitMods;
+        const iamCss = params && params.iamCss
+            ? { ...iamCssInitMods, ...params.iamCss } : iamCssInitMods;
 
         super({
             ...config,
