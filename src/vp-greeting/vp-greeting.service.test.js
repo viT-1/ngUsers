@@ -8,7 +8,7 @@ import VpGreetingSrvc from './vp-greeting.service';
 // функция заменяющая таймауты на фэйковые - не требуется ждать
 // jest.useFakeTimers();
 
-describe(VpGreetingSrvc.aka, () => {
+describe(VpGreetingSrvc.name, () => {
     let svc;
     let $timeout;
 

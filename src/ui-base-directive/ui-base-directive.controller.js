@@ -16,7 +16,7 @@ class UiBaseDirectiveCtrl {
 
     $onInit() {
         // Дополняем версией директивы данные из binded attributes to controller
-        this[this.naming.aka] = { ...this.iamCss, ...this[this.naming.aka] };
+        this.iamCss = { ...this.iamCss, ...this[this.naming.aka] };
     }
 }
 

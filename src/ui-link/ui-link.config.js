@@ -1,9 +1,11 @@
 // @link: https://toddmotto.com/no-scope-soup-bind-to-controller-angularjs/
 // https://toddmotto.com/digging-into-angulars-controller-as-syntax/
 
+import Common from '@/common';
+
 import jsonNaming from './ui-link.naming.json';
 
-export const naming = jsonNaming;
+export const naming = { ...jsonNaming, aka: Common.directiveNormalize(jsonNaming.attr) };
 
 export const config = {
     template: '<ng-transclude></ng-transclude>',

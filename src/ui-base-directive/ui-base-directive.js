@@ -45,13 +45,13 @@ class UiBaseDirective {
     }
 
     link(scope, el, attrs, ctrl, transclude) {
-        const attrValue = ctrl[this.naming.aka];
+        const { iamCss } = ctrl;
 
-        if (attrValue) {
-            const strAttrValue = JSON.stringify(ctrl[this.naming.aka]);
-            if (strAttrValue !== '{}') {
+        if (iamCss) {
+            const strIamCss = JSON.stringify(iamCss);
+            if (strIamCss !== '{}') {
                 // Устанавливает исходному атрибуту JSON влияющий на CSS-стилизацию
-                attrs.$set(this.naming.attr, strAttrValue);
+                attrs.$set(this.naming.attr, strIamCss);
             }
         }
 

@@ -10,7 +10,7 @@ class UiNavItem {
             const { isCurrent } = this.data;
             if (isCurrent !== this.wasCurrent) {
                 this.wasCurrent = isCurrent;
-                this.navItemMods = { ...this.mods, isCurrent };
+                this.iamCss = { ...this.iamCss, isCurrent };
             }
         }
     }

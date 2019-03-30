@@ -13,7 +13,7 @@ export const config = {
     templateUrl: '/tmpl/ui-nav/item',
     bindings: {
         data: '<', // Данные из сервиса для отображения элемента
-        mods: '<', // iamCss модификаторы из родительского ui-nav
+        iamCss: '<', // iamCss модификаторы из родительского ui-nav
     },
     scope: {},
 };

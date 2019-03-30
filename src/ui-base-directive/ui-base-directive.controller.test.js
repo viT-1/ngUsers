@@ -20,13 +20,9 @@ describe(`${naming.aka} controller`, () => {
         new UiBaseDirectiveCtrl({ naming });
     });
 
-    test(`Контроллер содержит свойства iamCss и ${naming.aka} необходимые для link директивы`, () => {
-        expect.assertions(3);
+    test('Контроллер содержит свойство iamCss необходимое для link директивы', () => {
         const ctrl = new UiBaseDirectiveCtrl({ naming, iamCss: iamCssInitMods });
 
         expect(ctrl.iamCss).toBeDefined();
-        expect(ctrl[naming.aka]).not.toBeDefined();
-        ctrl.$onInit();
-        expect(ctrl[naming.aka]).toBeDefined();
     });
 });

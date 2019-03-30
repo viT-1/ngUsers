@@ -1,10 +1,12 @@
 import angular from 'angular';
 
+import Common from '@/common';
+
 import UiBaseDirective from '@/ui-base-directive';
 import template from './ui-app.html';
 import jsonNaming from './ui-app.naming.json';
 
-const naming = jsonNaming;
+export const naming = { ...jsonNaming, aka: Common.directiveNormalize(jsonNaming.attr) };
 
 let module;
 try {

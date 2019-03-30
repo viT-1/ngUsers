@@ -4,8 +4,7 @@ import routingModuleName from '@/routing';
 import jsonNaming from './ui-nav.naming.json';
 import jsonIamCss from './ui-nav.iamCss.json';
 
-jsonNaming.aka = Common.directiveNormalize(jsonNaming.attr);
-export const naming = jsonNaming;
+export const naming = { ...jsonNaming, aka: Common.directiveNormalize(jsonNaming.attr) };
 
 export const requires = [
     routingModuleName,

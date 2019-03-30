@@ -46,14 +46,14 @@ describe(`${naming.aka} directiive 1`, () => {
     });
 
     // @link: https://stackoverflow.com/a/24761145
-    test(`Контроллер определён и содержит свойство ${naming.attr}`, () => {
+    test('Контроллер определён и содержит свойство iamCss', () => {
         expect.assertions(2);
 
         const elem = getElem(`<a ${naming.attr}></a>`, $compile, $rootScope);
         const vm = elem.controller(naming.aka);
 
         expect(vm).toBeDefined();
-        expect(vm[naming.aka]).toBeDefined();
+        expect(vm.iamCss).toBeDefined();
     });
 
     test('Передаваемый html отрисовывается (transclude) директивой как есть', () => {

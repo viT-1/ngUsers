@@ -114,10 +114,17 @@ describe(`${naming.aka} directiive`, () => {
 
     test('Если в директиву ui-nav передать модификатор отличный от config,'
         + ' то и в ui-nav__item будет использоваться тот же', () => {
+        expect.assertions(2);
         const elem = getElem(`<nav ${naming.attr}='{"dir":"555"}'></nav>`);
         const queryItems = `[${naming.attr}${naming.attrItem} *= '"dir":"555"']`;
         const items = elem[0].querySelectorAll(queryItems);
 
+        // console.log(elem.html());
         expect(items.length).toBeGreaterThan(0);
+
+        // Если не передали версию, то она дополняется из config'а
+        const queryVItems = `[${naming.attr}${naming.attrItem} *= '"v":"']`;
+        const vItems = elem[0].querySelectorAll(queryVItems);
+        expect(vItems.length).toBeGreaterThan(0);
     });
 });

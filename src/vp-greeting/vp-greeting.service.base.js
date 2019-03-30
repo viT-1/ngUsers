@@ -16,10 +16,6 @@ class VpGreetingSrvcBase {
     getGreetString() {
         throw new Error(`${commonErrors.NEED_IMPLEMENT_METHOD} getGreetString`);
     }
-
-    static get aka() {
-        return 'VpGreetingSrvc';
-    }
 }
 
 export default VpGreetingSrvcBase;

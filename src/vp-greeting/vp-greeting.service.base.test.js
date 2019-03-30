@@ -3,7 +3,7 @@ import VpGreetingSrvcBase from './vp-greeting.service.base';
 
 class InheritedClassComponent extends VpGreetingSrvcBase {}
 
-describe(`${VpGreetingSrvcBase.aka} base class`, () => {
+describe(`${VpGreetingSrvcBase.name} base class`, () => {
     it('Нельзя создать абстрактный объект VpGreetingServiceBase', () => {
         expect(() => { new VpGreetingSrvcBase(); })
             .toThrowError(commonErrors.ABSTRACT_CANT_BE_INSTANTIATED);
