@@ -8,9 +8,6 @@ describe(routingModuleName, () => {
 
     beforeEach(() => {
         angular.mock.module(routingModuleName);
-    });
-
-    beforeEach(() => {
         module = angular.module(routingModuleName);
     });
 

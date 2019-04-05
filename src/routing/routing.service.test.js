@@ -11,7 +11,7 @@ describe(`${RoutingService.name}`, () => {
     let $state;
     let $rootScope;
 
-    beforeEach(() => {
+    beforeAll(() => {
         angular.module('testApp', [routingModuleName]);
     });
 

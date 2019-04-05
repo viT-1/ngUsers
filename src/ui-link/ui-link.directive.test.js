@@ -21,7 +21,7 @@ describe(`${naming.aka} directiive`, () => {
         return elem;
     }
 
-    beforeEach(() => {
+    beforeAll(() => {
         angular.module('testApp', [moduleName]);
         // Не нужен $templateCache, так как вместо templateUrl из базовой директивы указан template
     });

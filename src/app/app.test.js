@@ -1,5 +1,4 @@
 import angular from 'angular';
-import 'angular-mocks';
 
 import { aka, defaults } from './app.config';
 import App from './app';

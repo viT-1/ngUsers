@@ -35,8 +35,11 @@ describe(`${naming.aka} directiive`, () => {
         return elem;
     }
 
-    beforeEach(() => {
+    beforeAll(() => {
         angular.module('testApp', [moduleName])
+            .config($provide => $provide.decorator(
+                '$httpBackend', angular.mock.e2e.$httpBackendDecorator,
+            ))
             // @link: https://embed.plnkr.co/plunk/pzSMzv
             // @link: https://groups.google.com/forum/#!topic/angular/K-KEWKjiI4Y
             .run(($templateCache) => {

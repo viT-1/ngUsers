@@ -21,9 +21,12 @@ describe(`${naming.aka} component`, () => {
         return elem;
     }
 
-    beforeEach(() => {
+    beforeAll(() => {
         angular.module('testApp', [])
             .component(naming.aka, { ...config, controller: UiNavItemCtrl })
+            .config($provide => $provide.decorator(
+                '$httpBackend', angular.mock.e2e.$httpBackendDecorator,
+            ))
             .run(($templateCache) => {
                 $templateCache.put(config.templateUrl, tmpl);
             });

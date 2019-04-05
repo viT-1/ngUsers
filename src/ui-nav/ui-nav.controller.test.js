@@ -10,8 +10,11 @@ import UiNavDirectiveCtrl from './ui-nav.controller';
 describe(`${naming.aka} controller`, () => {
     let ctrl;
 
-    beforeEach(() => {
-        angular.module('testApp', [routingModuleName]);
+    beforeAll(() => {
+        angular.module('testApp', [routingModuleName])
+            .config($provide => $provide.decorator(
+                '$httpBackend', angular.mock.e2e.$httpBackendDecorator,
+            ));
     });
 
     beforeEach(() => {
