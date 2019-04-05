@@ -1,3 +1,3 @@
-import uiNavModuleName from './ui-nav.module';
+import moduleName from './ui-nav.module';
 
-export default uiNavModuleName;
+export default moduleName;

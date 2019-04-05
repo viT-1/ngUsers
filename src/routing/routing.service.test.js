@@ -2,25 +2,20 @@ import angular from 'angular';
 import 'angular-mocks';
 
 // @todo: поменять на свой routing module? с зависимостями от компонент?
-import routingModuleName from './routing.module';
+import moduleName from './routing.module';
+import Srvc from './routing.service';
 
-import RoutingService from './routing.service';
-
-describe(`${RoutingService.name}`, () => {
+describe(`${Srvc.name}`, () => {
     let svc;
     let $state;
     let $rootScope;
 
-    beforeAll(() => {
-        angular.module('testApp', [routingModuleName]);
-    });
-
     beforeEach(() => {
-        angular.mock.module('testApp');
+        angular.mock.module(moduleName);
     });
 
     beforeEach(angular.mock.inject(($injector) => {
-        svc = $injector.get(RoutingService.name);
+        svc = $injector.get(Srvc.name);
         $state = $injector.get('$state');
         $rootScope = $injector.get('$rootScope');
 

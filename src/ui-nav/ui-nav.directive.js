@@ -1,5 +1,5 @@
 import UiBaseDirective from '@/ui-base-directive';
-import UiNavDirectiveCtrl from './ui-nav.controller';
+import Ctrl from './ui-nav.controller';
 import { config, naming, iamCssInitMods } from './ui-nav.config';
 
 class UiNavDirective extends UiBaseDirective {
@@ -14,7 +14,7 @@ class UiNavDirective extends UiBaseDirective {
             naming,
             // Если определяем свой контроллер, то iamCss нет смысла передавать в базовую директиву
             // iamCss,
-            controller: RoutingSrvc => new UiNavDirectiveCtrl({
+            controller: RoutingSrvc => new Ctrl({
                 RoutingSrvc,
                 naming,
                 iamCss,

@@ -1,5 +1,5 @@
 import data from './routing.data.ru.json';
-import routingModuleName from './routing.module';
+import moduleName from './routing.module';
 
 export const jsonData = data;
-export default routingModuleName;
+export default moduleName;

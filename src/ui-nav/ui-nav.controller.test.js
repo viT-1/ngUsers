@@ -5,7 +5,7 @@ import routingModuleName from '@/routing';
 import { aka as routingSrvcName } from '@/routing/routing.service';
 
 import { naming } from './ui-nav.config';
-import UiNavDirectiveCtrl from './ui-nav.controller';
+import Ctrl from './ui-nav.controller';
 
 describe(`${naming.aka} controller`, () => {
     let ctrl;
@@ -26,7 +26,7 @@ describe(`${naming.aka} controller`, () => {
         const $state = $injector.get('$state');
         const svc = $injector.get(routingSrvcName);
 
-        ctrl = new UiNavDirectiveCtrl({
+        ctrl = new Ctrl({
             [routingSrvcName]: svc,
         });
 

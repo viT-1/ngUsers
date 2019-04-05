@@ -1,14 +1,14 @@
 import angular from 'angular';
 import 'angular-mocks';
 
-import routingModuleName from './routing.module';
+import moduleName from './routing.module';
 
-describe(routingModuleName, () => {
+describe(moduleName, () => {
     let module;
 
     beforeEach(() => {
-        angular.mock.module(routingModuleName);
-        module = angular.module(routingModuleName);
+        angular.mock.module(moduleName);
+        module = angular.module(moduleName);
     });
 
     test('Модуль зарегистрирован', () => {

@@ -16,7 +16,7 @@ import moduleName from '@/ui-nav';
 
 import tmpl from './ui-nav.html';
 import iamCssJson from './ui-nav.iamCss.json';
-import DirectiveCtrl from './ui-nav.controller';
+import Ctrl from './ui-nav.controller';
 
 import tmplItem from './ui-nav__item.html';
 import { config as configItem } from './ui-nav__item.config';
@@ -102,7 +102,7 @@ describe(`${naming.aka} directiive`, () => {
     test('Директива управляется собственным контроллером (не базовым)', () => {
         const elem = getElem(`<div ${naming.attr}></div>`);
 
-        expect(elem.controller(naming.aka) instanceof DirectiveCtrl).toBe(true);
+        expect(elem.controller(naming.aka) instanceof Ctrl).toBe(true);
     });
 
     test('Директива рисует элементы списка с гиперссылками на разделы, соответствующие json', () => {

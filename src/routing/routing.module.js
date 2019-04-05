@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 import data from './routing.data.ru.json';
-import RoutingSrvc from './routing.service';
+import Srvc from './routing.service';
 import { requires } from './routing.config';
 
 // Тесты!
@@ -27,7 +27,7 @@ class Routing {
         } catch (err) {
             return angular.module(this.name, requires)
                 .config(this.setStates)
-                .service(RoutingSrvc.name, RoutingSrvc);
+                .service(Srvc.name, Srvc);
         }
     }
 }

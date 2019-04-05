@@ -1,3 +1,3 @@
-import mockHttpModuleName from './mock-http.module';
+import moduleName from './mock-http.module';
 
-export default mockHttpModuleName;
+export default moduleName;
