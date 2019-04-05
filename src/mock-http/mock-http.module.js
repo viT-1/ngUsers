@@ -8,6 +8,8 @@ import angular from 'angular';
 import { fakeHttpTimeout } from '~/config';
 import { templates, requires } from './mock-http.config';
 
+import { jsonData as jsonUsers } from '@/pg-users';
+
 // @url asimmittal.blogspot.com/2015/06/faking-backend-in-angularjs.html
 // Решение проблемы сделать паузу в ответе $httpBackend.whenGET
 // @link https://stackoverflow.com/questions/26083822/angularjs-using-ngmocke2e-httpbackend-how-can-i-delay-a-specific-response
@@ -42,6 +44,15 @@ class MockHttp {
         $httpBackend.whenGET('/api/test').respond(200, { foo: 'bar' });
 
         $httpBackend.whenGET('/api/greeting').respond(200, { greet: 'Complete' });
+
+        $httpBackend.whenGET('/api/user/list').respond(200, { items: jsonUsers.users });
+        $httpBackend.whenGET('/api/user-group/list').respond(200, { items: jsonUsers.groups });
+        $httpBackend.whenRoute('GET', '/api/user-ids-by-group-id/:id').respond(
+            (m, u, d, h, params) => [200, {
+                items: jsonUsers.relUserIdsByGroupId
+                    .filter(item => item.groupId === Number.parseInt(params.id, 10)),
+            }],
+        );
 
         $httpBackend.whenGET('/tmpl/vp-greeting').respond(200, templates['vp-greeting']);
         $httpBackend.whenGET('/tmpl/ui-nav').respond(200, templates['ui-nav']);

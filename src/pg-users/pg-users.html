@@ -1,0 +1,12 @@
+<label><span ng-bind="::$ctrl.findLabel"></span> <input value="o" ng-model="$ctrl.findText" /></label>
+<table>
+    <thead>
+        <tr><th ng-bind="::$ctrl.fioLabel"></th><th ng-bind="::$ctrl.majorLabel"></th></tr>
+    </thead>
+    <tbody>
+        <tr><th colspan="2" ng-bind="::$ctrl.groupName"></th></tr>
+        <tr ng-repeat="user in $ctrl.users | filter: $ctrl.findText">
+            <td>{{::user.firstName}} {{::user.lastName}}</td><td>{{::user.id}}</td>
+        </tr>
+    </tbody>
+</table>

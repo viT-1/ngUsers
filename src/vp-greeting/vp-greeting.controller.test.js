@@ -27,7 +27,7 @@ describe(`${vpGreetingModuleName} controller`, () => {
         expect(ctrl.TO).toBe('ME');
     });
 
-    test('При помощи контроллера указываетя значение ctrl.greet', () => {
+    test('При помощи контроллера указывается значение ctrl.greet', () => {
         $timeout.flush();
 
         expect(ctrl.greet).toBeDefined();
