@@ -1,18 +1,18 @@
 import angular from 'angular';
 
-import { aka, config } from './pg-users.config';
+import { naming, config } from './pg-users.config';
 import Srvc from './pg-users.service';
 import Ctrl from './pg-users.controller';
 
 let module;
 try {
-    module = angular.module(aka);
+    module = angular.module(naming.aka);
 } catch (err) {
-    module = angular.module(aka, [])
+    module = angular.module(naming.aka, [])
         // $q нужен для mock в тестах
         .service(Srvc.name, $http => new Srvc({ $http }))
         .component(
-            aka,
+            naming.aka,
             { ...config, controller: ($q, PgUsersSrvc) => new Ctrl({ $q, PgUsersSrvc }) },
         );
 }

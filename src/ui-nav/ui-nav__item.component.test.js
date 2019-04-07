@@ -4,7 +4,7 @@ import 'angular-mocks';
 import { jsonData } from '@/routing';
 
 import tmpl from './ui-nav__item.html';
-import UiNavItemCtrl from './ui-nav__item.controller';
+import ItemCtrl from './ui-nav__item.controller';
 import { naming, config } from './ui-nav__item.config';
 
 // @link: https://stackoverflow.com/questions/48101798/how-to-test-changes-on-component-bindings-by-parent-element
@@ -23,7 +23,7 @@ describe(`${naming.aka} component`, () => {
 
     beforeAll(() => {
         angular.module('testApp', [])
-            .component(naming.aka, { ...config, controller: UiNavItemCtrl })
+            .component(naming.aka, { ...config, controller: ItemCtrl })
             .config($provide => $provide.decorator(
                 '$httpBackend', angular.mock.e2e.$httpBackendDecorator,
             ))

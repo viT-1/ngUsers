@@ -3,10 +3,12 @@ import 'angular-mocks';
 
 import Common from '@/common';
 import mockHttpModuleName from '@/mock-http';
+
+import { errors } from './pg-users.config';
 import jsonUsers from './pg-users.data.ru.json';
 import Srvc from './pg-users.service';
 
-describe(Srvc.name, () => {
+describe(`${Srvc.name} 1`, () => {
     let $timeout;
     let svc;
 
@@ -78,5 +80,12 @@ describe(Srvc.name, () => {
             });
 
         $timeout.flush();
+    });
+});
+
+describe(`${Srvc.name} 2`, () => {
+    test('Без передачи $http получаем ошибку', () => {
+        expect(() => { new Srvc({ some: 'thing' }); })
+            .toThrowError(`${errors.NEED_INJECT} $http`);
     });
 });

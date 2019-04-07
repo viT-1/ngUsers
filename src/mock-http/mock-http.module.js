@@ -47,6 +47,7 @@ class MockHttp {
 
         $httpBackend.whenGET('/api/user/list').respond(200, { items: jsonUsers.users });
         $httpBackend.whenGET('/api/user-group/list').respond(200, { items: jsonUsers.groups });
+        $httpBackend.whenGET('/api/user-ids-by-group-id/list').respond(200, { items: jsonUsers.relUserIdsByGroupId });
         $httpBackend.whenRoute('GET', '/api/user-ids-by-group-id/:id').respond(
             (m, u, d, h, params) => [200, {
                 items: jsonUsers.relUserIdsByGroupId

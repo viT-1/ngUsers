@@ -1,10 +1,11 @@
+import { errors } from './pg-users.config';
 
 class PgUsersSrvc {
     constructor(params) {
         Object.assign(this, params);
 
         if (!this.$http) {
-            throw new Error();
+            throw new Error(`${errors.NEED_INJECT} $http`);
         }
     }
 
@@ -17,7 +18,7 @@ class PgUsersSrvc {
     }
 
     getUserIdsByGroupId(id) {
-        return this.$http.get(`/api/user-ids-by-group-id/${id}`);
+        return this.$http.get(`/api/user-ids-by-group-id/${id || 'list'}`);
     }
 }
 
