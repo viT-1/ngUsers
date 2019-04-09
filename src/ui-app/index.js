@@ -17,7 +17,7 @@ try {
             naming,
             template,
             // в атрибут директивы попадает только свойство iamCss
-            iamCss: { v: 'grid' },
+            iamCss: { v: 'leftNav' },
         }));
 }
 

@@ -1,5 +1,6 @@
-// Невозможно опираться на жёсткий порядок модификаторов,
-// потому вес селектора вынужден увеличить
-[{bAttr} *= {mVersion}][{bAttr} *= {mVertical}] {
-    width: 10em;
-}
+[{bAttr} *= {mVersion}]
+    --x: 1em;
+    box-sizing: border-box;
+
+[{bAttr} *= {mVersion}][{bAttr} *= {mLeft}]
+    padding: var(--x) 0 var(--x) var(--x);

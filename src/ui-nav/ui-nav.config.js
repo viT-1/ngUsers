@@ -14,6 +14,7 @@ export const iamCssInitMods = {
     // '^': '#app', // context - any parent selector
     v: jsonIamCss.v,
     dir: jsonIamCss.dirVert,
+    pos: jsonIamCss.posLeft,
 };
 
 export const config = {

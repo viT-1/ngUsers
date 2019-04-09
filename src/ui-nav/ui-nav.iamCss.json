@@ -1,5 +1,7 @@
 {
     "v": "v1-0",
     "dirHoriz": "-",
-    "dirVert": "|"
+    "dirVert": "|",
+    "posLeft": "l",
+    "posTop": "t"
 }

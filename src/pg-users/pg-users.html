@@ -9,7 +9,7 @@
             <th ui-table__th='{"^":["tbody"]}' colspan="2" ng-bind="::group.groupName"></th>
         </tr>
         <tr ng-repeat="user in group.users | filter: $ctrl.findText | orderBy: ['asBossId', 'lastName']">
-            <td ui-table__td='{"^":["tbody"]}'>{{::user.firstName}} {{::user.lastName}}</td>
+            <td ui-table__td='{"^":["tbody"]}' pg-users-tbl__td="name">{{::user.firstName}} {{::user.lastName}}</td>
             <td ui-table__td='{"^":["tbody"]}' pg-users-tbl__td="asBoss">{{::user.asBoss}}</td>
         </tr>
     </tbody>

@@ -1,3 +1,11 @@
-[{eItem} *= {mVersion}][{eItem} *= {mVertical}] {
+[{eItem} *= {mVersion}]
+    line-height: calc(2*var(--x));
+
+[{eItem} *= {mVersion}][{eItem} *= {mVertical}]
     display: block;
+    margin: var(--x) 0;
+
+[{eItem} *= {mVersion}][{eItem} *= {mLeft}] {
+    display: block;
+    padding-left: var(--x);
 }

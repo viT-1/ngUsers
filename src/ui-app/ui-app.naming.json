@@ -1,3 +1,4 @@
 {
-    "attr": "ui-app"
+    "attr": "ui-app",
+    "attrNav": "__nav"
 }

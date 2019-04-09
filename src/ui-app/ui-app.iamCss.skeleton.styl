@@ -1,3 +1,14 @@
-[{bApp} *= 'grid']
+[{bApp} *= 'leftNav'] {
+    --nav-w: 10em;
+
     padding: 2em;
     display: block;
+    margin-left: var(--nav-w);
+}
+
+[{eNav} *= 'leftNav'] {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--nav-w);
+}
