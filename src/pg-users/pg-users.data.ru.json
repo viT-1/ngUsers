@@ -1,7 +1,7 @@
 {
     "groups": [
         {"id":1, "type":0, "groupName":"Руководитель"},
-        {"id":2, "type":0, "groupName":"Заместитель руководителя"},
+        {"id":2, "type":0, "groupName":"Зам. руководителя"},
         {"id":3, "type":1, "groupName":"Бухгалтерия"},
         {"id":4, "type":1, "groupName":"Кадры"},
         {"id":5, "type":1, "groupName":"АСУ"}

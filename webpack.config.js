@@ -1,4 +1,4 @@
-const glob = require('glob');
+const globby = require('globby');
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -31,19 +31,30 @@ const fileLoader = {
 };
 
 // Скопипащено @link https://stackoverflow.com/questions/42670633/using-webpack-to-transpile-es6-as-separate-files
-function getEntries(srcDir, pattern, retOnlyFolders) {
+function getEntries(rootDir, patterns, retOnlyFolders) {
     const entries = {};
 
-    glob.sync(`${srcDir}/${pattern}`).forEach((file) => {
-        if (!retOnlyFolders.includes(file.split('/')[1])) return;
+    const ps = [];
+    patterns.forEach((p) => {
+        if (p.charAt(0) === '!') {
+            ps.push(p.replace('!', `!${rootDir}/`));
+        } else {
+            ps.push(`${rootDir}/${p}`);
+        }
+    });
 
-        entries[file.replace(`${srcDir}/`, '')] = path.join(__dirname, file);
+    globby.sync(ps).forEach((file) => {
+        if (retOnlyFolders && !retOnlyFolders.includes(file.split('/')[1])) return;
+
+        entries[file.replace(`${rootDir}/`, '')] = path.join(__dirname, file);
     });
 
     return entries;
 }
 
-const filteredCssEntries = getEntries(sourcePath, `**/*.${theme}.css`, cssFilter);
+const themedCss = getEntries(sourcePath, [`**/*.${theme}.css`], cssFilter);
+const notThemedCss = getEntries(sourcePath, ['**/*.css', '!**/*.*.css']);
+const filteredCssEntries = Object.assign(themedCss, notThemedCss);
 
 const allEntries = {
     // entry mask samples

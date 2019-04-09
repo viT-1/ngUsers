@@ -63,7 +63,7 @@ class PgUsers {
                         this.users.filter(user => user.id === uId).forEach((user_) => {
                             const user = user_;
                             user.asBoss = group.groupName;
-                            user.asBoddId = group.id;
+                            user.asBossId = group.id;
                         });
                     });
                 });

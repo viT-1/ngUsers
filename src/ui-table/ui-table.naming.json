@@ -1,3 +1,5 @@
 {
-    "attr": "ui-table"
+    "attr": "ui-table",
+    "attrTh": "__th",
+    "attrTd": "__td"
 }

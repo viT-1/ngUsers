@@ -1,0 +1,4 @@
+/* На скорую руку без директивы и stylus, поскольку используется единожды (как inline) */
+[pg-users-tbl__td = "asBoss"] {
+    text-align: right;
+}

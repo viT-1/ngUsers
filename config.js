@@ -9,4 +9,5 @@ exports.cssFilter = [
     'vp-greeting',
     'ui-link',
     'ui-nav',
+    'ui-table',
 ];
