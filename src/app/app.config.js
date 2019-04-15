@@ -1,5 +1,6 @@
 import vpGreetingModuleName from '@/vp-greeting';
 import mockHttpModuleName from '@/mock-http';
+import getTextModuleName from '@/gettext';
 import uiAppModuleName from '@/ui-app';
 import uiLinkModuleName from '@/ui-link';
 import uiNavModuleName from '@/ui-nav';
@@ -16,6 +17,7 @@ export const defaults = {
     requires: [
         vpGreetingModuleName,
         mockHttpModuleName,
+        getTextModuleName,
         uiAppModuleName,
         uiLinkModuleName,
         uiNavModuleName,

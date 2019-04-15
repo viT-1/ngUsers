@@ -1,0 +1,12 @@
+/* Стили, которые не привязаны к отдельным директивам */
+[ui-label__text] {
+    display: inline-block;
+}
+
+[ui-label__text]::first-letter {
+    text-transform: uppercase;
+}
+
+[ui-label__text]::after {
+    content: ':';
+}
