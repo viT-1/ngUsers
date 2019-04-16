@@ -1,6 +1,7 @@
 import angular from 'angular';
 import 'angular-mocks';
 
+import { errors as commonErrors } from '@/common/common.config';
 import routingModuleName from '@/routing';
 import { aka as routingSrvcName } from '@/routing/routing.service';
 
@@ -37,6 +38,11 @@ describe(`${naming.aka} controller`, () => {
             $rootScope.$digest();
         }
     }));
+
+    test('Попытка создать контроллера без параметров вызывает ошибку', () => {
+        expect(() => { new Ctrl(); })
+            .toThrowError(commonErrors.NEED_PARAMS);
+    });
 
     test('Контроллер создержит данные items для отрисовки template', () => {
         ctrl.$onInit();

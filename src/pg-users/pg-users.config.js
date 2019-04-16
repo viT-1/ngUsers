@@ -1,4 +1,6 @@
 import Common from '@/common';
+import gettextModuleName from '@/gettext';
+
 import jsonNaming from './pg-users.naming.json';
 
 const { attr } = jsonNaming;
@@ -7,6 +9,10 @@ export const naming = {
     aka: Common.directiveNormalize(attr),
 };
 
+export const requires = [
+    gettextModuleName,
+];
+
 export const config = {
     templateUrl: '/tmpl/pg-users',
     bindings: {},
@@ -14,5 +20,4 @@ export const config = {
 };
 
 export const errors = {
-    NEED_INJECT: 'Need service injection for:',
 };

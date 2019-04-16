@@ -2,9 +2,10 @@ import angular from 'angular';
 import 'angular-mocks';
 
 import { jsonData } from '@/routing';
+import gettextModuleName from '@/gettext';
 
 import tmpl from './ui-nav__item.html';
-import ItemCtrl from './ui-nav__item.controller';
+import Ctrl from './ui-nav__item.controller';
 import { naming, config } from './ui-nav__item.config';
 
 // @link: https://stackoverflow.com/questions/48101798/how-to-test-changes-on-component-bindings-by-parent-element
@@ -22,13 +23,16 @@ describe(`${naming.aka} component`, () => {
     }
 
     beforeAll(() => {
-        angular.module('testApp', [])
-            .component(naming.aka, { ...config, controller: ItemCtrl })
+        angular.module('testApp', [gettextModuleName])
             .config($provide => $provide.decorator(
                 '$httpBackend', angular.mock.e2e.$httpBackendDecorator,
             ))
             .run(($templateCache) => {
                 $templateCache.put(config.templateUrl, tmpl);
+            })
+            .component(naming.aka, {
+                ...config,
+                controller: gettextCatalog => new Ctrl({ gettextCatalog }),
             });
     });
 

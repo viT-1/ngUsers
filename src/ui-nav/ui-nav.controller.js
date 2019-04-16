@@ -14,12 +14,14 @@ class UiNavDirectiveCtrl extends UiBaseDirectiveCtrl {
             ...params,
         });
 
-        if (params) {
-            if (!params[routingSrvcName]) {
-                throw new Error(`${commonErrors.DEPENDENCY_FAILED}: ${routingSrvcName} not found`);
-            } else {
-                this.svc = params[routingSrvcName];
-            }
+        if (!params) {
+            throw new Error(commonErrors.NEED_PARAMS);
+        }
+
+        if (!params[routingSrvcName]) {
+            throw new Error(`${commonErrors.NEED_INJECT} ${routingSrvcName}`);
+        } else {
+            this.svc = params[routingSrvcName];
         }
     }
 

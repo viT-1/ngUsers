@@ -4,7 +4,6 @@ import 'angular-mocks';
 import { errors as commonErrors } from '@/common/common.config';
 import mockHttpModuleName from '@/mock-http';
 
-import { errors } from './pg-users.config';
 import { jsonData } from './index';
 import moduleName from './pg-users.module';
 import Ctrl from './pg-users.controller';
@@ -59,11 +58,11 @@ describe(`${Ctrl.name} 2`, () => {
 
     test('Без передачи $q получаем ошибку', () => {
         expect(() => { new Ctrl({ PgUsersSrvc: 'thing' }); })
-            .toThrowError(`${errors.NEED_INJECT} $q`);
+            .toThrowError(`${commonErrors.NEED_INJECT} $q`);
     });
 
     test('Без передачи params получаем ошибку', () => {
         expect(() => { new Ctrl({ $q: 'thing' }); })
-            .toThrowError(`${errors.NEED_INJECT} PgUsersSrvc`);
+            .toThrowError(`${commonErrors.NEED_INJECT} PgUsersSrvc`);
     });
 });

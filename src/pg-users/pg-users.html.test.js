@@ -4,10 +4,9 @@ import 'angular-mocks';
 import mockHttpModuleName from '@/mock-http';
 
 import { jsonData } from './index';
-import tmpl from './pg-users.html';
 // Включаем всё сразу - и контроллер компонента и сервис и компонент
 import moduleName from './pg-users.module';
-import { naming } from './pg-users.config';
+import { config, naming } from './pg-users.config';
 
 describe(`${naming.aka} component`, () => {
     let $compile;
@@ -48,7 +47,7 @@ describe(`${naming.aka} component`, () => {
     test('Компонент рендерит столько tbody, сколько групп + 1 (без группы)', () => {
         const elem = getElem();
 
-        expect(elem[0].querySelectorAll(`[${naming.attr}__list] tbody`).length)
+        expect(elem[0].querySelectorAll(`[${naming.attr}__table] tbody`).length)
             .toBeGreaterThanOrEqual(
                 jsonData.groups.filter(g => g.type === 1).length,
             );

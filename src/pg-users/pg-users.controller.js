@@ -1,8 +1,6 @@
 import Common from '@/common';
 import { errors as commonErrors } from '@/common/common.config';
 
-import { errors } from './pg-users.config';
-
 class PgUsers {
     constructor(params) {
         if (!params) {
@@ -10,11 +8,11 @@ class PgUsers {
         }
 
         if (!params.$q) {
-            throw new Error(`${errors.NEED_INJECT} $q`);
+            throw new Error(`${commonErrors.NEED_INJECT} $q`);
         }
 
         if (!params.PgUsersSrvc) {
-            throw new Error(`${errors.NEED_INJECT} PgUsersSrvc`);
+            throw new Error(`${commonErrors.NEED_INJECT} PgUsersSrvc`);
         }
 
         Object.assign(this, params);

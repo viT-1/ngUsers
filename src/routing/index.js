@@ -1,4 +1,4 @@
-import data from './routing.data.ru.json';
+import data from './routing.data.json';
 import moduleName from './routing.module';
 
 export const jsonData = data;

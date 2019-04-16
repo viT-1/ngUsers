@@ -39,7 +39,6 @@ class MockHttp {
         return proxy;
     }
 
-    /* @ngInject */
     static run($httpBackend) {
         $httpBackend.whenGET('/api/test').respond(200, { foo: 'bar' });
 

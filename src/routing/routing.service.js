@@ -1,5 +1,5 @@
 // import { jsonData } from '@/routing';
-import jsonData from './routing.data.ru.json';
+import jsonData from './routing.data.json';
 
 class RoutingSrvc {
     // Как inject с помощью params?

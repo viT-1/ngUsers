@@ -1,11 +1,13 @@
 [{eItem} *= {mVersion}]
     line-height: calc(2*var(--x));
 
+[{eItem} *= {mVersion}]::first-letter
+    text-transform: uppercase;
+
 [{eItem} *= {mVersion}][{eItem} *= {mVertical}]
     display: block;
     margin: var(--x) 0;
 
-[{eItem} *= {mVersion}][{eItem} *= {mLeft}] {
+[{eItem} *= {mVersion}][{eItem} *= {mLeft}]
     display: block;
     padding-left: var(--x);
-}

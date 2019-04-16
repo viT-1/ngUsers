@@ -16,6 +16,7 @@ import moduleName from '@/ui-nav';
 
 import tmpl from './ui-nav.html';
 import iamCssJson from './ui-nav.iamCss.json';
+import dataRu from './ui-nav.translate.ru.json';
 import Ctrl from './ui-nav.controller';
 
 import tmplItem from './ui-nav__item.html';
@@ -112,7 +113,7 @@ describe(`${naming.aka} directiive`, () => {
         const items = elem[0].querySelectorAll(queryItems);
 
         expect(items.length).toBe(navData.items.length);
-        expect(items[0].innerHTML).toBe(navData.items[0].title);
+        expect(items[0].innerHTML).toBe(dataRu[navData.items[0].key]);
     });
 
     test('Если в директиву ui-nav передать модификатор отличный от config,'

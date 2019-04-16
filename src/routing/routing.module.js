@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import data from './routing.data.ru.json';
+import data from './routing.data.json';
 import Srvc from './routing.service';
 import { requires } from './routing.config';
 
@@ -8,7 +8,6 @@ import { requires } from './routing.config';
 // @link: https://medium.com/evbinary/angularjs-and-ui-router-testing-the-right-way-part-1-c165c4565549
 
 class Routing {
-    /* @ngInject */
     static setStates($stateProvider) {
         data.items.forEach((item) => {
             $stateProvider.state({

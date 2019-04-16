@@ -1,15 +1,17 @@
 {
     "items": [{
         "key": "welcome",
-        "title": "Главная",
         "url": "/"
     }, {
         "key": "users",
-        "title": "Пользователи",
-        "url": "/users"
+        "url": "/users",
+        "items": [{
+            "key": "as table"
+        }, {
+            "key": "as cards"
+        }]
     }, {
         "key": "books",
-        "title": "Книги",
         "url": "/books"
     }]
 }
