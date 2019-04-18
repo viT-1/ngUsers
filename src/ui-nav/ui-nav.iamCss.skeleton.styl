@@ -1,6 +1,10 @@
-[{bAttr} *= {mVersion}]
-    --x: 1em;
-    box-sizing: border-box;
+/* Size scheme */
+--x = 1em;
 
-[{bAttr} *= {mVersion}][{bAttr} *= {mLeft}]
-    padding: var(--x) 0 var(--x) var(--x);
+[{bAttr} *= {mVersion}] {
+    box-sizing: border-box;
+}
+
+[{bAttr} *= {mVersion}][{bAttr} *= {mLeft}] {
+    padding: --x 0 --x --x;
+}

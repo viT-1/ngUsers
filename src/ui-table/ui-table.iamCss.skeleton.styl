@@ -1,18 +1,18 @@
-// Size scheme
-[{bAttr} *= {mVersion}] {
-    --x: 5px;
-    --thin: 1px;
+/* Size scheme */
+--x = 5px;
+--thin = 1px;
 
+[{bAttr} *= {mVersion}] {
     border-collapse: collapse;
-    border-width: 0 var(--thin);
+    border-width: 0 --thin;
 }
 
 [{eTh} *= {mVersion}] {
-    padding: var(--x);
-    border-width: var(--thin) 0;
+    padding: --x;
+    border-width: --thin 0;
 }
 
 [{eTd} *= {mVersion}] {
-    padding: var(--x);
-    border-width: var(--thin) 0;
+    padding: --x;
+    border-width: --thin 0;
 }

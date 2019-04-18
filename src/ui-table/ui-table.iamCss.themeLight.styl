@@ -1,21 +1,21 @@
-// Color scheme
-[{bAttr} *= {mVersion}] {
-    --clr-main: DarkGoldenRod;
-    --clr-main-contrast: FloralWhite;
+/* Color scheme */
+--clr-main = DarkGoldenRod;
+--clr-main-contrast = FloralWhite;
 
+[{bAttr} *= {mVersion}] {
     border-style: none solid;
-    border-color: var(--clr-main);
+    border-color: --clr-main;
 }
 
 [{eTh} *= {mVersion}] {
-    color: var(--clr-main-contrast);
-    background: var(--clr-main);
-    border-color: var(--clr-main);
+    color: --clr-main-contrast;
+    background: --clr-main;
+    border-color: --clr-main;
     border-style: solid none;
 }
 
 [{eTd} *= {mVersion}] {
-    color: var(--clr-main);
-    background: var(--clr-main-contrast);
+    color: --clr-main;
+    background: --clr-main-contrast;
     border-style: solid none;
 }
