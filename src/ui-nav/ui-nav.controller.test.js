@@ -31,9 +31,9 @@ describe(`${naming.aka} controller`, () => {
             [routingSrvcName]: svc,
         });
 
-        if (svc.items) {
+        if (svc.mainItems) {
             // Инициализируем первое состояние
-            $state.go(svc.items[0].key);
+            $state.go(svc.mainItems[0].key);
             // Необходимо для срабатывания handler'ов на event'ы
             $rootScope.$digest();
         }
@@ -48,5 +48,11 @@ describe(`${naming.aka} controller`, () => {
         ctrl.$onInit();
 
         expect(ctrl.items).toBeDefined();
+    });
+
+    test('Один из items должен быть isCurrent', () => {
+        ctrl.$onInit();
+
+        expect(ctrl.items.filter(item => item.isCurrent).length).toBe(1);
     });
 });

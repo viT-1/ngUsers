@@ -11,6 +11,10 @@ class Common {
             .replace(/[:\-_]+(.)/g,
                 (_, letter, offset) => (offset ? letter.toUpperCase() : letter));
     }
+
+    static capitalize(str) {
+        return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
+    }
 }
 
 export default Common;

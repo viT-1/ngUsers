@@ -56,13 +56,18 @@ describe(`${Ctrl.name} 2`, () => {
             .toThrowError(commonErrors.NEED_PARAMS);
     });
 
-    test('Без передачи $q получаем ошибку', () => {
+    test('Без передачи $q и $state получаем ошибку', () => {
         expect(() => { new Ctrl({ PgUsersSrvc: 'thing' }); })
-            .toThrowError(`${commonErrors.NEED_INJECT} $q`);
+            .toThrowError(`${commonErrors.NEED_INJECT} $q, $state`);
     });
 
-    test('Без передачи params получаем ошибку', () => {
+    test('Без передачи PgUsersSrvc и $state получаем ошибку', () => {
         expect(() => { new Ctrl({ $q: 'thing' }); })
-            .toThrowError(`${commonErrors.NEED_INJECT} PgUsersSrvc`);
+            .toThrowError(`${commonErrors.NEED_INJECT} $state, PgUsersSrvc`);
+    });
+
+    test('Без передачи $q и PgUsersSrvc получаем ошибку', () => {
+        expect(() => { new Ctrl({ $state: 'thing' }); })
+            .toThrowError(`${commonErrors.NEED_INJECT} $q, PgUsersSrvc`);
     });
 });

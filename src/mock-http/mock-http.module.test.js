@@ -10,15 +10,22 @@ import moduleName from './mock-http.module';
 describe(moduleName, () => {
     let $timeout;
     let $http;
+    let module;
 
     beforeEach(() => {
         angular.mock.module(moduleName);
+        module = angular.module(moduleName);
     });
 
     beforeEach(angular.mock.inject(($injector) => {
         $timeout = $injector.get('$timeout');
         $http = $injector.get('$http');
     }));
+
+    // Тест отработает и без angular.mock.module за счёт import
+    test('Модуль зарегистрирован', () => {
+        expect(module).not.toEqual(null);
+    });
 
     test('Запрос /api/test выдаёт { foo: "bar" }', (done) => {
         expect.assertions(1);

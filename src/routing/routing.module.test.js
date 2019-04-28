@@ -6,8 +6,13 @@ import moduleName from './routing.module';
 describe(moduleName, () => {
     let module;
 
+    beforeAll(() => {
+        angular.module('testApp', [moduleName]);
+        // Не нужен $templateCache, так как вместо templateUrl из базовой директивы указан template
+    });
+
     beforeEach(() => {
-        angular.mock.module(moduleName);
+        angular.mock.module('testApp');
         module = angular.module(moduleName);
     });
 

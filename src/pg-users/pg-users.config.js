@@ -1,3 +1,5 @@
+import uiRouter from '@uirouter/angularjs';
+
 import Common from '@/common';
 import gettextModuleName from '@/gettext';
 
@@ -10,6 +12,7 @@ export const naming = {
 };
 
 export const requires = [
+    uiRouter,
     gettextModuleName,
 ];
 
@@ -17,6 +20,10 @@ export const config = {
     templateUrl: '/tmpl/pg-users',
     bindings: {},
     scope: {},
+};
+
+export const initValues = {
+    viewType: 'cards',
 };
 
 export const errors = {

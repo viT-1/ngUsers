@@ -22,7 +22,19 @@ class PgUsers {
                 .component(
                     naming.aka, {
                         ...config,
-                        controller: ($q, PgUsersSrvc) => new Ctrl({ $q, PgUsersSrvc }),
+                        controller: ($q, $state, PgUsersSrvc) => new Ctrl({
+                            $q, $state, PgUsersSrvc,
+                        }),
+                    },
+                )
+                .component(
+                    `${naming.aka}Table`, {
+                        template: '<h1>Table</h1>',
+                    },
+                )
+                .component(
+                    `${naming.aka}Cards`, {
+                        template: '<h1>Cards</h1>',
                     },
                 );
         }

@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import Common from '@/common';
+
 import data from './routing.data.json';
 import Srvc from './routing.service';
 import { requires } from './routing.config';
@@ -8,13 +10,32 @@ import { requires } from './routing.config';
 // @link: https://medium.com/evbinary/angularjs-and-ui-router-testing-the-right-way-part-1-c165c4565549
 
 class Routing {
+    /* @ngInject */
     static setStates($stateProvider) {
+        // console.log('222');
+        // @todo: рекурсию
         data.items.forEach((item) => {
+            const component = `pg${Common.capitalize(item.key)}`;
             $stateProvider.state({
                 name: item.key,
                 url: item.url,
-                component: `pg${item.key.charAt(0).toUpperCase()}${item.key.slice(1)}`,
+                component,
             });
+
+            // Плохо, что эта логика завязана на структуру json
+            // как только json изменится, логику прийдётся править @todo: добавить test!
+            const subitems = item.items;
+            if (subitems) {
+                subitems.forEach((subitem) => {
+                    const state = {
+                        name: `${item.key}.${subitem.key}`,
+                        url: subitem.url,
+                        component: `${component}${Common.capitalize(subitem.key)}`,
+                    };
+
+                    $stateProvider.state(state);
+                });
+            }
         });
 
         // $urlRouterProvider.otherwise('/');
@@ -22,10 +43,14 @@ class Routing {
 
     static get module() {
         try {
+            // console.log('try', Date.now());
             return angular.module(this.name);
         } catch (err) {
+            // console.log('catch', Date.now());
             return angular.module(this.name, requires)
+                // .config(this.setStates)
                 .config(this.setStates)
+                // .service(Srvc.name, ($state, $transitions) => new Srvc({ $state, $transitions }));
                 .service(Srvc.name, Srvc);
         }
     }

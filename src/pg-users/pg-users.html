@@ -1,4 +1,13 @@
-<label><translate ui-label__text>find user</translate> <input value="o" ng-model="$ctrl.findText" /></label>
+<p>
+    <translate ui-label__text>view</translate>
+    <label><input type="radio" value="table" name="viewtype" ng-model="$ctrl.viewType"/><translate>as table</translate></label>
+    <label><input type="radio" value="cards" name="viewtype" ng-model="$ctrl.viewType" /><translate>as cards</translate></label>
+</p>
+<p>
+    <label><translate ui-label__text>find user</translate> <input value="o" ng-model="$ctrl.findText" /></label>
+</p>
+<ui-view></ui-view>
+
 <table ui-table pg-users__table>
     <thead><tr>
         <th ui-table__th='{"^":["thead"]}' ng-bind="::$ctrl.fioLabel"></th>

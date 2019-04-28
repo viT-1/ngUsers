@@ -6,9 +6,11 @@
         "key": "users",
         "url": "/users",
         "items": [{
-            "key": "as table"
+            "key": "table",
+            "url": "/table"
         }, {
-            "key": "as cards"
+            "key": "cards",
+            "url": "/cards"
         }]
     }, {
         "key": "books",

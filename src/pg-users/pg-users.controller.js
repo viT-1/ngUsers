@@ -1,5 +1,6 @@
-import Common from '@/common';
 import { errors as commonErrors } from '@/common/common.config';
+
+import { initValues } from './pg-users.config';
 
 class PgUsers {
     constructor(params) {
@@ -7,15 +8,27 @@ class PgUsers {
             throw new Error(commonErrors.NEED_PARAMS);
         }
 
-        if (!params.$q) {
-            throw new Error(`${commonErrors.NEED_INJECT} $q`);
+        // Если хоть одного из сервиса не будет, то
+        const { $q, $state, PgUsersSrvc } = params;
+        const needInject = [];
+
+        if (!$q) {
+            needInject.push('$q');
         }
 
-        if (!params.PgUsersSrvc) {
-            throw new Error(`${commonErrors.NEED_INJECT} PgUsersSrvc`);
+        if (!$state) {
+            needInject.push('$state');
         }
 
-        Object.assign(this, params);
+        if (!PgUsersSrvc) {
+            needInject.push('PgUsersSrvc');
+        }
+
+        if (needInject.length) {
+            throw new Error(`${commonErrors.NEED_INJECT} ${needInject.sort().join(', ')}`);
+        }
+
+        Object.assign(this, { $q, $state, PgUsersSrvc }, initValues);
     }
 
     setUsersByGroups() {
@@ -71,6 +84,16 @@ class PgUsers {
 
     $onInit() {
         this.setUsersByGroups();
+    }
+
+    $doCheck() {
+        if (this.viewType !== this.oldViewType) {
+            // console.log('viewType changed to', this.viewType);
+            this.oldViewType = this.viewType;
+
+            const siblingChgChar = this.$state.$current.name.includes('.') ? '^' : '';
+            this.$state.go(`${siblingChgChar}.${this.viewType}`);
+        }
     }
 }
 

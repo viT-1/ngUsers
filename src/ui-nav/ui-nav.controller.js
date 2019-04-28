@@ -30,7 +30,8 @@ class UiNavDirectiveCtrl extends UiBaseDirectiveCtrl {
 
         // Добавляем данные для отрисовки элементов навигации при помощи сервиса
         // Reactive: Нужен ли watcher, т.к. svc.items меняются
-        this.items = this.svc.items;
+        // Из элементов навигации исключаем дочерние routing-состояния
+        this.items = this.svc.mainItems;
     }
 }
 
