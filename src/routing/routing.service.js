@@ -2,9 +2,8 @@
 import jsonData from './routing.data.json';
 
 class RoutingSrvc {
-    // constructor(params) {
-    constructor($state, $transitions) {
-        // const { $state, $transitions } = params;
+    constructor(params) {
+        const { $state, $transitions } = params;
 
         this.routingItems = [];
 

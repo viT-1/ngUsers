@@ -43,15 +43,11 @@ class Routing {
 
     static get module() {
         try {
-            // console.log('try', Date.now());
             return angular.module(this.name);
         } catch (err) {
-            // console.log('catch', Date.now());
             return angular.module(this.name, requires)
-                // .config(this.setStates)
                 .config(this.setStates)
-                // .service(Srvc.name, ($state, $transitions) => new Srvc({ $state, $transitions }));
-                .service(Srvc.name, Srvc);
+                .service(Srvc.name, ($state, $transitions) => new Srvc({ $state, $transitions }));
         }
     }
 }
