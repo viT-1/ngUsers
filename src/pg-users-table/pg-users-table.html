@@ -1,0 +1,15 @@
+<table ui-table>
+    <thead><tr>
+        <th ui-table__th='{"^":["thead"]}' ng-bind="::$ctrl.fioLabel"></th>
+        <th ui-table__th='{"^":["thead"]}' ng-bind="::$ctrl.asBossLabel"></th>
+    </tr></thead>
+    <tbody ng-repeat="group in $ctrl.groups">
+        <tr>
+            <th ui-table__th='{"^":["tbody"]}' colspan="2" ng-bind="::group.groupName"></th>
+        </tr>
+        <tr ng-repeat="user in group.users | filter: $ctrl.search | orderBy: ['asBossId', 'lastName']">
+            <td ui-table__td='{"^":["tbody"]}' pg-users-table__td="name">{{::user.firstName}} {{::user.lastName}}</td>
+            <td ui-table__td='{"^":["tbody"]}' pg-users-table__td="asBoss">{{::user.asBoss}}</td>
+        </tr>
+    </tbody>
+</table>

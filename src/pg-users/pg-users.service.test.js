@@ -2,13 +2,13 @@ import angular from 'angular';
 import 'angular-mocks';
 
 import Common from '@/common';
+import { errors as commonErrors } from '@/common/common.config';
 import mockHttpModuleName from '@/mock-http';
 
-import { errors } from './pg-users.config';
 import jsonUsers from './pg-users.data.ru.json';
 import Srvc from './pg-users.service';
 
-describe(`${Srvc.name} 1`, () => {
+describe(`${Srvc.name} by mock`, () => {
     let $timeout;
     let svc;
 
@@ -83,9 +83,9 @@ describe(`${Srvc.name} 1`, () => {
     });
 });
 
-describe(`${Srvc.name} 2`, () => {
+describe(`${Srvc.name} as class`, () => {
     test('Без передачи $http получаем ошибку', () => {
         expect(() => { new Srvc({ some: 'thing' }); })
-            .toThrowError(`${errors.NEED_INJECT} $http`);
+            .toThrowError(`${commonErrors.NEED_INJECT} $http`);
     });
 });

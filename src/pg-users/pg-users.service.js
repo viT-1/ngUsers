@@ -1,11 +1,11 @@
-import { errors } from './pg-users.config';
+import { errors as commonErrors } from '@/common/common.config';
 
 class PgUsersSrvc {
     constructor(params) {
         Object.assign(this, params);
 
         if (!this.$http) {
-            throw new Error(`${errors.NEED_INJECT} $http`);
+            throw new Error(`${commonErrors.NEED_INJECT} $http`);
         }
     }
 

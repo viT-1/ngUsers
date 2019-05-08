@@ -2,11 +2,11 @@ import angular from 'angular';
 import 'angular-mocks';
 
 import mockHttpModuleName from '@/mock-http';
+import { jsonData } from '@/pg-users';
+import PgUserSrvc from '@/pg-users/pg-users.service';
 
-import { jsonData } from './index';
-// Включаем всё сразу - и контроллер компонента и сервис и компонент
-import moduleName from './pg-users.module';
-import { config, naming } from './pg-users.config';
+import moduleName from './index';
+import { naming } from './pg-users-table.config';
 
 describe(`${naming.aka} component`, () => {
     let $compile;
@@ -24,6 +24,7 @@ describe(`${naming.aka} component`, () => {
 
     beforeAll(() => {
         angular.module('testApp', [mockHttpModuleName, moduleName])
+            .service(PgUserSrvc.name, $http => new PgUserSrvc({ $http }))
             .config($provide => $provide.decorator(
                 // Возвращаем исходный декоратор без задержки
                 '$httpBackend', angular.mock.e2e.$httpBackendDecorator,
@@ -39,15 +40,17 @@ describe(`${naming.aka} component`, () => {
         $rootScope = $injector.get('$rootScope');
         $timeout = $injector.get('$timeout');
 
+        // 327ms через $componentController
         const $componentController = $injector.get('$componentController');
         const ctrl = $componentController(moduleName);
+
         ctrl.$onInit();
     }));
 
     test('Компонент рендерит столько tbody, сколько групп + 1 (без группы)', () => {
         const elem = getElem();
 
-        expect(elem[0].querySelectorAll(`[${naming.attr}__table] tbody`).length)
+        expect(elem[0].querySelectorAll('tbody').length)
             .toBeGreaterThanOrEqual(
                 jsonData.groups.filter(g => g.type === 1).length,
             );

@@ -30,7 +30,8 @@ class Routing {
                     const state = {
                         name: `${item.key}.${subitem.key}`,
                         url: subitem.url,
-                        component: `${component}${Common.capitalize(subitem.key)}`,
+                        // reactive-связывание input в parent-компоненте с фильтром в child
+                        template: `<pg-${item.key}-${subitem.key} search="$ctrl.findText"></pg-${item.key}-${subitem.key}>`,
                     };
 
                     $stateProvider.state(state);

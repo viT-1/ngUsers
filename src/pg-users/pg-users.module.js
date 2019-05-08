@@ -1,14 +1,15 @@
 import angular from 'angular';
 
 import { naming, requires, config } from './pg-users.config';
-import dataRu from './pg-users.translate.ru.json';
+
+import translateRu from './pg-users.translate.ru.json';
 import Srvc from './pg-users.service';
 import Ctrl from './pg-users.controller';
 
 
 class PgUsers {
     static run(gettextCatalog) {
-        gettextCatalog.setStrings('ru', dataRu);
+        gettextCatalog.setStrings('ru', translateRu);
     }
 
     static get module() {
@@ -25,11 +26,6 @@ class PgUsers {
                         controller: ($q, $state, PgUsersSrvc) => new Ctrl({
                             $q, $state, PgUsersSrvc,
                         }),
-                    },
-                )
-                .component(
-                    `${naming.aka}Table`, {
-                        template: '<h1>Table</h1>',
                     },
                 )
                 .component(

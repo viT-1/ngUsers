@@ -4,15 +4,18 @@ import 'angular-mocks';
 import { errors as commonErrors } from '@/common/common.config';
 import mockHttpModuleName from '@/mock-http';
 
-import moduleName from './pg-users.module';
-import Ctrl from './pg-users.controller';
-import { initValues } from './pg-users.config';
+import { jsonData } from '@/pg-users';
+import PgUsersSrvc from '@/pg-users/pg-users.service';
 
-describe(`${Ctrl.name} by mock`, () => {
+import moduleName from './index';
+import Ctrl from './pg-users-table.controller';
+
+describe(`${Ctrl.name} with $injector`, () => {
+    let $timeout;
     let ctrl;
 
     beforeAll(() => {
-        angular.module('testApp', [moduleName, mockHttpModuleName])
+        angular.module('testApp', [mockHttpModuleName, moduleName])
             // возвращаем httpBackendDecorator к исходной логике
             // без задержки по времени настраиваиваемой для основного приложения через config
             .config($provide => $provide.decorator(
@@ -25,21 +28,28 @@ describe(`${Ctrl.name} by mock`, () => {
     });
 
     beforeEach(angular.mock.inject(($injector) => {
-        // Таким способом контроллер не взаимодействует с $timeout
-        // (не внедрён через inject) по асинхронным действиям
-        // ctrl = new Ctrl(new Srvc({ $http }));
+        $timeout = $injector.get('$timeout');
+        const $http = $injector.get('$http');
+        const $q = $injector.get('$q');
 
-        const $componentController = $injector.get('$componentController');
-        ctrl = $componentController(moduleName);
+        ctrl = new Ctrl({
+            PgUsersSrvc: new PgUsersSrvc({ $http }),
+            $q,
+        });
+
+        ctrl.$onInit();
     }));
 
-    test('По умолчанию выставляется тот режим отображения, что указан в config', () => {
+    test('При помощи контроллера указывается значение ctrl.groups в котором как минимум то же количество групп, что и в json', () => {
         expect.assertions(2);
+        $timeout.flush();
 
         // Насколько это корректно опираться на то, что асинхронный запрос
         // будет отрабатывать без задержки с помощью httpBackendDecorator?
-        expect(ctrl.viewType).toBeDefined();
-        expect(ctrl.viewType).toBe(initValues.viewType);
+        expect(ctrl.groups).toBeDefined();
+        expect(ctrl.groups.length).toBeGreaterThanOrEqual(
+            jsonData.groups.filter(g => g.type === 1).length,
+        );
     });
 });
 
@@ -49,8 +59,8 @@ describe(`${Ctrl.name} as class`, () => {
             .toThrowError(commonErrors.NEED_PARAMS);
     });
 
-    test('Без передачи $state получаем ошибку', () => {
-        expect(() => { new Ctrl({ some: 'thing' }); })
-            .toThrowError(`${commonErrors.NEED_INJECT} $state`);
+    test('Без передачи PgUsersSrvc получаем ошибку', () => {
+        expect(() => { new Ctrl({ $state: 'thing' }); })
+            .toThrowError(`${commonErrors.NEED_INJECT} $q, PgUsersSrvc`);
     });
 });
