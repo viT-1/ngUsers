@@ -6,6 +6,7 @@ import tmplUiNavItem from '@/ui-nav/ui-nav__item.html';
 import tmplPgWelcome from '@/pg-welcome/pg-welcome.html';
 import tmplPgUsers from '@/pg-users/pg-users.html';
 import tmplPgUsersTable from '@/pg-users-table/pg-users-table.html';
+import tmplPgUsersCards from '@/pg-users-cards/pg-users-cards.html';
 
 export const templates = {
     'ui-nav': tmplUiNav,
@@ -14,6 +15,7 @@ export const templates = {
     'pg-welcome': tmplPgWelcome,
     'pg-users': tmplPgUsers,
     'pg-users-table': tmplPgUsersTable,
+    'pg-users-cards': tmplPgUsersCards,
     'pg-books': '<h1>БУКС</h1>',
 };
 

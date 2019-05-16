@@ -4,6 +4,7 @@ import Common from '@/common';
 import gettextModuleName from '@/gettext';
 
 import pgUsersTableModuleName from '@/pg-users-table';
+import pgUsersCardsModuleName from '@/pg-users-cards';
 
 import jsonNaming from './pg-users.naming.json';
 
@@ -17,6 +18,7 @@ export const requires = [
     uiRouter,
     gettextModuleName,
     pgUsersTableModuleName,
+    pgUsersCardsModuleName,
 ];
 
 export const config = {

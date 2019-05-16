@@ -61,6 +61,7 @@ class MockHttp {
         $httpBackend.whenGET('/tmpl/pg-books').respond(200, templates['pg-books']);
         $httpBackend.whenGET('/tmpl/pg-users').respond(200, templates['pg-users']);
         $httpBackend.whenGET('/tmpl/pg-users-table').respond(200, templates['pg-users-table']);
+        $httpBackend.whenGET('/tmpl/pg-users-cards').respond(200, templates['pg-users-cards']);
 
         // Для single-page роутинга Route-provider
         $httpBackend.whenGET(/\.html/).passThrough();

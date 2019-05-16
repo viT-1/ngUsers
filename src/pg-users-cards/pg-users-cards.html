@@ -1,0 +1,3 @@
+<ul ng-repeat="card in $ctrl.items | filter: $ctrl.search | orderBy: ['lastName']"">
+    <li>{{::card.firstName}} {{::card.lastName}}</li>
+</ul>

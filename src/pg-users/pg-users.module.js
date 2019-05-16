@@ -27,11 +27,6 @@ class PgUsers {
                             $q, $state, PgUsersSrvc,
                         }),
                     },
-                )
-                .component(
-                    `${naming.aka}Cards`, {
-                        template: '<h1>Cards</h1>',
-                    },
                 );
         }
     }
